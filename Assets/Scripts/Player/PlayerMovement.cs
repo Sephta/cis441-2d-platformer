@@ -34,7 +34,8 @@ public class PlayerMovement : MonoBehaviour
     {
         GetDirectionVector();
         
-        if ((direction == Vector2.zero || (prevDirection != direction)) && _rb.velocity.y == 0)
+        // if ((direction == Vector2.zero || (prevDirection != direction)) && _rb.velocity.y == 0)
+        if (direction == Vector2.zero && _rb.velocity.y == 0)
         {
             _rb.velocity = new Vector3(_rb.velocity.x * moveDirFalloff, _rb.velocity.y, _rb.velocity.z * moveDirFalloff);
         }
@@ -51,7 +52,8 @@ public class PlayerMovement : MonoBehaviour
             
             float move = (Input.GetKey(InputManager._inst._keyBindings[InputAction.run])) ? movementSpeed * sprintMultiplier : movementSpeed;
 
-            _rb.AddForce((moveDir * move * Time.fixedDeltaTime), ForceMode.Impulse);
+            // if (_rb.velocity.y == 0)
+            _rb.AddForce((moveDir * move * Time.fixedDeltaTime), ForceMode.VelocityChange);
         }
     }
 #endregion

@@ -18519,19 +18519,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4004628548990599268, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: numJumps
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4004628548990599268, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: jumpForce
-      value: 461
+      value: 425
       objectReference: {fileID: 0}
     - target: {fileID: 4004628548990599268, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: jumpTapFalloff
-      value: 0.748
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4004628548990599268, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: jumpForwardForce
-      value: 1.16
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4004628548990599268, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: gravityMultiplier

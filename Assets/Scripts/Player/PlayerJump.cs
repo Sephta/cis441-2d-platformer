@@ -68,7 +68,7 @@ public class PlayerJump : MonoBehaviour
                 if (_pm != null)
                 {
                     Vector3 moveDir = _pm.lockZAxis ? new Vector3(direction.x, 0f, 0f) : new Vector3(direction.x, 0f, direction.y);
-                    _rb.AddForce(moveDir * jumpForwardForce, ForceMode.Impulse);   
+                    _rb.AddForce(moveDir * jumpForwardForce, ForceMode.Impulse);
                 }
             }
             
