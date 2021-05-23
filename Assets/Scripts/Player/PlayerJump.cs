@@ -13,6 +13,7 @@ public class PlayerJump : MonoBehaviour
 
     // PRIVATE VARS
     private InputManager iManager = null;
+    private StaticGroundedManager iGrounded = null;
 
     void Awake()
     {
@@ -24,13 +25,16 @@ public class PlayerJump : MonoBehaviour
     {
         if (iManager == null && InputManager._inst != null)
             iManager = InputManager._inst;
+        
+        if (iGrounded == null && StaticGroundedManager._inst != null)
+            iGrounded = StaticGroundedManager._inst;
     }
 
     void Update()
     {
-        if (iManager != null)
+        if (iManager != null && iGrounded != null)
         {
-            if (Input.GetKeyDown(iManager._keyBindings[InputAction.jump]))
+            if (Input.GetKeyDown(iManager._keyBindings[InputAction.jump]) && iGrounded.isGrounded)
             {
                 _rb.AddForce(((transform.up * jumpForce) + _rb.velocity) - _rb.velocity, ForceMode.Impulse);
             }

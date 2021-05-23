@@ -3368,6 +3368,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7114247909472441374, guid: 1b01aca063d388f41930a55127fd3366, type: 3}
   m_PrefabInstance: {fileID: 1235506801}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &1273846481 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 1689309893328767987, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+  m_PrefabInstance: {fileID: 7016092284743022408}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1282669580
 GameObject:
   m_ObjectHideFlags: 0
@@ -5446,7 +5451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1827448331}
   - component: {fileID: 1827448332}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6569,6 +6574,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 284667673244454411, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 526463905919064872, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: m_Drag
       value: 1
@@ -6580,6 +6589,10 @@ PrefabInstance:
     - target: {fileID: 4004628548990599268, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: jumpForce
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6307514126474594013, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: _mask
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7133389003119453037, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: lockZAxis
@@ -6594,6 +6607,14 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7233926704780968053, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233926704780968053, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7233926704780968053, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -6605,5 +6626,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3bcc84fd80263124da8a6519dc4706eb, type: 2}
+    - target: {fileID: 8748471296515370262, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: _collider
+      value: 
+      objectReference: {fileID: 1273846481}
+    - target: {fileID: 9164874594675837972, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9164874594675837972, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
