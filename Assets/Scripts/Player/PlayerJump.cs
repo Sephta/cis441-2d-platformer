@@ -17,6 +17,7 @@ public class PlayerJump : MonoBehaviour
     [Range(0f, 1f)] public float jumpTapFalloff = 0.5f;
     [Range(0f, 10f)] public float gravityMultiplier = 0f;
     public Vector3 gravityDefault = new Vector3(0f, -9.81f, 0f);
+    [Range(0f, 1f)] public float hangTime = 0f;
 
     // PRIVATE VARS
     private InputManager iManager = null;
@@ -24,6 +25,7 @@ public class PlayerJump : MonoBehaviour
     
     [Header("Debug Data")]
     [SerializeField, ReadOnly] private int currJumpCount = 0;
+    [SerializeField, ReadOnly] private float currHangTime = 0f;
     [SerializeField, ReadOnly] private Vector2 direction = Vector2.zero;
     [SerializeField, ReadOnly] private Vector2 prevDirection = Vector2.zero;
 
@@ -44,17 +46,20 @@ public class PlayerJump : MonoBehaviour
             iGrounded = StaticGroundedManager._inst;
 
         currJumpCount = numJumps;
+        currHangTime = hangTime;
     }
 
     void Update()
     {
         GetDirectionVector();
+        UpdateHangTime();
 
         if (iManager != null && iGrounded != null)
         {
-            UpdateJumpCounter();
+            // UpdateJumpCounter();
 
-            if (Input.GetKeyDown(iManager._keyBindings[InputAction.jump]) && (iGrounded.isGrounded || currJumpCount > 0))
+            if (Input.GetKeyDown(iManager._keyBindings[InputAction.jump]) 
+                && (iGrounded.isGrounded || currJumpCount > 0))
             {
                 currJumpCount = Mathf.Clamp((currJumpCount - 1), 0, numJumps);
 
@@ -88,10 +93,15 @@ public class PlayerJump : MonoBehaviour
     private void UpdateJumpCounter()
     {
         if (iGrounded.isGrounded && !(_rb.velocity.y > 0))
-        // if (iGrounded.isGrounded)
         {
             currJumpCount = numJumps;
         }
+    }
+
+    private void UpdateHangTime()
+    {    
+        if (iGrounded.isGrounded) currHangTime = hangTime;
+        else currHangTime = Mathf.Clamp((currHangTime - Time.deltaTime), 0f, hangTime);
     }
 
     /// <summary>
