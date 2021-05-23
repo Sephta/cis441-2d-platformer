@@ -13,9 +13,12 @@ public class PlayerMovement : MonoBehaviour
     public bool lockZAxis = false;
     [Range(0f, 100f)] public float movementSpeed = 0f;
     [ReadOnly] public Vector3 moveDir = Vector3.zero;
+    [Range(0f, 1f)] public float moveDirFalloff = 0.5f;
 
+    [Header("Debug Data")]
     // PRIVATE VARS
-    private Vector2 direction = Vector2.zero;
+    [SerializeField, ReadOnly] private Vector2 direction = Vector2.zero;
+    [SerializeField, ReadOnly] private Vector2 prevDirection = Vector2.zero;
 
 #region Unity_Functions
     void Awake()
@@ -29,6 +32,11 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         GetDirectionVector();
+        
+        if ((direction == Vector2.zero || (prevDirection != direction)) && _rb.velocity.y == 0)
+        {
+            _rb.velocity = new Vector3(_rb.velocity.x * moveDirFalloff, _rb.velocity.y, _rb.velocity.z * moveDirFalloff);
+        }
     }
 
     void FixedUpdate()
@@ -39,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
                 moveDir = new Vector3(direction.x, 0, direction.y);
             else
                 moveDir = new Vector3(direction.x, 0, 0);
-            _rb.AddForce(((moveDir * movementSpeed * Time.fixedDeltaTime) + _rb.velocity) - _rb.velocity, ForceMode.Impulse);
+            _rb.AddForce((moveDir * movementSpeed * Time.fixedDeltaTime), ForceMode.Impulse);
         }
     }
 #endregion
@@ -52,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (InputManager._inst == null)
             return;
+        
+        prevDirection = direction;
         
         InputManager iManager = InputManager._inst;
 

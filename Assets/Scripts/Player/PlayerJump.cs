@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
@@ -7,18 +8,31 @@ public class PlayerJump : MonoBehaviour
     // PUBLIC VARS
     [Header("Dependencies")]
     public Rigidbody _rb = null;
+    public PlayerMovement _pm = null;
 
     [Header("Jump Data")]
+    [Range(0f, 10f)] public int numJumps = 2;
     [Range(0f, 1000f)] public float jumpForce = 0f;
+    [Range(0f, 10f)] public float jumpForwardForce = 0f;
+    [Range(0f, 1f)] public float jumpTapFalloff = 0.5f;
+    [Range(0f, 10f)] public float gravityMultiplier = 0f;
+    public Vector3 gravityDefault = new Vector3(0f, -9.81f, 0f);
 
     // PRIVATE VARS
     private InputManager iManager = null;
     private StaticGroundedManager iGrounded = null;
+    
+    [Header("Debug Data")]
+    [SerializeField, ReadOnly] private int currJumpCount = 0;
+    [SerializeField, ReadOnly] private Vector2 direction = Vector2.zero;
+    [SerializeField, ReadOnly] private Vector2 prevDirection = Vector2.zero;
 
     void Awake()
     {
         if (GetComponent<Rigidbody>() != null)
             _rb = GetComponent<Rigidbody>();
+        if (GetComponent<PlayerMovement>() != null)
+            _pm = GetComponent<PlayerMovement>();
     }
 
     void Start()
@@ -28,17 +42,84 @@ public class PlayerJump : MonoBehaviour
         
         if (iGrounded == null && StaticGroundedManager._inst != null)
             iGrounded = StaticGroundedManager._inst;
+
+        currJumpCount = numJumps;
     }
 
     void Update()
     {
+        GetDirectionVector();
+
         if (iManager != null && iGrounded != null)
         {
-            if (Input.GetKeyDown(iManager._keyBindings[InputAction.jump]) && iGrounded.isGrounded)
+            UpdateJumpCounter();
+
+            if (Input.GetKeyDown(iManager._keyBindings[InputAction.jump]) && (iGrounded.isGrounded || currJumpCount > 0))
             {
-                _rb.AddForce(((transform.up * jumpForce) + _rb.velocity) - _rb.velocity, ForceMode.Impulse);
+                currJumpCount = Mathf.Clamp((currJumpCount - 1), 0, numJumps);
+
+                _rb.velocity = new Vector3(_rb.velocity.x, jumpForce * Time.fixedDeltaTime, _rb.velocity.z);
+
+                if (_pm != null)
+                {
+                    Vector3 moveDir = _pm.lockZAxis ? new Vector3(direction.x, 0f, 0f) : new Vector3(direction.x, 0f, direction.y);
+                    _rb.AddForce(moveDir * jumpForwardForce, ForceMode.Impulse);   
+                }
+            }
+            
+            if (Input.GetKeyUp(iManager._keyBindings[InputAction.jump]) && _rb.velocity.y > 0)
+            {
+                _rb.velocity = new Vector3(_rb.velocity.x, _rb.velocity.y * jumpTapFalloff, _rb.velocity.z);
+            }
+
+            if (_rb.velocity.y < 0)
+            {
+                Physics.gravity = gravityDefault * gravityMultiplier;
+            }
+            else
+            {
+                Physics.gravity = gravityDefault;
             }
         }
     }
     // void FixedUpdate() {}
+
+    #region Custom_Functions
+    private void UpdateJumpCounter()
+    {
+        if (iGrounded.isGrounded && !(_rb.velocity.y > 0))
+        // if (iGrounded.isGrounded)
+        {
+            currJumpCount = numJumps;
+        }
+    }
+
+    /// <summary>
+    /// Finds and normalizes input direction using custom InputManager system
+    /// </summary>
+    private void GetDirectionVector()
+    {
+        if (InputManager._inst == null)
+            return;
+        
+        prevDirection = direction;
+        
+        InputManager iManager = InputManager._inst;
+
+        if (Input.GetKey(iManager._keyBindings[InputAction.moveUp]))
+            direction.y = 1.0f;
+        else if (Input.GetKey(iManager._keyBindings[InputAction.moveDown]))
+            direction.y = -1.0f;
+        else
+            direction.y = 0;
+        if (Input.GetKey(iManager._keyBindings[InputAction.moveLeft]))
+            direction.x = -1.0f;
+        else if (Input.GetKey(iManager._keyBindings[InputAction.moveRight]))
+            direction.x = 1.0f;
+        else
+            direction.x = 0;
+        
+        direction = direction.normalized;
+    }
+#endregion
 }

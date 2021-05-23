@@ -15395,7 +15395,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827448330}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 51b28b618aa32294e8f1a7531d017d6a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -17923,12 +17923,40 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 526463905919064872, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 526463905919064872, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 526463905919064872, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 526463905919064872, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004628548990599268, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: numJumps
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4004628548990599268, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: jumpForce
-      value: 10
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004628548990599268, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: jumpTapFalloff
+      value: 0.748
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004628548990599268, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: jumpForwardForce
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004628548990599268, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: gravityMultiplier
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 6307514126474594013, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: _mask
@@ -17940,7 +17968,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7133389003119453037, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: movementSpeed
-      value: 15
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7133389003119453037, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: moveDirFalloff
+      value: 0.85125
       objectReference: {fileID: 0}
     - target: {fileID: 7233926704780968053, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: m_Name
