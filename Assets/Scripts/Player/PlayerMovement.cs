@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Data")]
     public bool lockZAxis = false;
     [Range(0f, 100f)] public float movementSpeed = 0f;
+    [Range(0f, 5f)] public float sprintMultiplier = 0f;
     [ReadOnly] public Vector3 moveDir = Vector3.zero;
     [Range(0f, 1f)] public float moveDirFalloff = 0.5f;
 
@@ -47,7 +48,10 @@ public class PlayerMovement : MonoBehaviour
                 moveDir = new Vector3(direction.x, 0, direction.y);
             else
                 moveDir = new Vector3(direction.x, 0, 0);
-            _rb.AddForce((moveDir * movementSpeed * Time.fixedDeltaTime), ForceMode.Impulse);
+            
+            float move = (Input.GetKey(InputManager._inst._keyBindings[InputAction.run])) ? movementSpeed * sprintMultiplier : movementSpeed;
+
+            _rb.AddForce((moveDir * move * Time.fixedDeltaTime), ForceMode.Impulse);
         }
     }
 #endregion

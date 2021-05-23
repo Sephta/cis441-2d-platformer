@@ -11,10 +11,11 @@ public enum InputAction
     moveDown = 1,
     moveLeft = 2,
     moveRight = 3,
-    jump = 4,
-    attack = 5,
-    nextItem = 6,
-    prevItem = 7
+    run = 4,
+    jump = 5,
+    attack = 6,
+    nextItem = 7,
+    prevItem = 8
 }
 
 #endregion

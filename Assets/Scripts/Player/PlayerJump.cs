@@ -56,7 +56,7 @@ public class PlayerJump : MonoBehaviour
 
         if (iManager != null && iGrounded != null)
         {
-            // UpdateJumpCounter();
+            UpdateJumpCounter();
 
             if (Input.GetKeyDown(iManager._keyBindings[InputAction.jump]) 
                 && (iGrounded.isGrounded || currJumpCount > 0))
