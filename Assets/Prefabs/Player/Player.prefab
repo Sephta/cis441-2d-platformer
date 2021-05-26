@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 284667673244454411}
   - component: {fileID: 7133389003119453037}
   - component: {fileID: 4004628548990599268}
+  - component: {fileID: 8652980578872477264}
   - component: {fileID: 997607841588380219}
   - component: {fileID: 8473393854772178530}
   m_Layer: 0
@@ -82,7 +83,11 @@ MonoBehaviour:
   _rb: {fileID: 526463905919064872}
   lockZAxis: 0
   movementSpeed: 25
+  sprintMultiplier: 0
   moveDir: {x: 0, y: 0, z: 0}
+  moveDirFalloff: 0.5
+  direction: {x: 0, y: 0}
+  prevDirection: {x: 0, y: 0}
 --- !u!114 &4004628548990599268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +101,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 526463905919064872}
+  _pm: {fileID: 0}
+  numJumps: 2
   jumpForce: 0
+  jumpForwardForce: 0
+  jumpTapFalloff: 0.5
+  gravityMultiplier: 0
+  gravityDefault: {x: 0, y: -9.81, z: 0}
+  hangTime: 0
+  currJumpCount: 0
+  currHangTime: 0
+  direction: {x: 0, y: 0}
+  prevDirection: {x: 0, y: 0}
+--- !u!114 &8652980578872477264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7233926704780968053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf052ef87892e514680893345d267367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rb: {fileID: 526463905919064872}
+  _mask:
+    serializedVersion: 2
+    m_Bits: 0
+  launchPower: 0
+  attackRange: 0
 --- !u!33 &997607841588380219
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -205,6 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
+  _debug: 0
   _mask:
     serializedVersion: 2
     m_Bits: 64
