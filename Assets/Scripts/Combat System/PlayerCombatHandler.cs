@@ -23,7 +23,12 @@ public class PlayerCombatHandler : MonoBehaviour, ICombatible
     [ReadOnly] public AttackState _playerAttackState = AttackState.none;
     [Range(0f, 100f)] public float launchPower = 0f;
     [Range(0f, 10f)] public float attackRange = 0f;
-    [Range(0f, 1f)] public float attackTime = 0f;
+    [Range(0f, 1f)] public float attackLerpTime = 0f;
+
+    [Header("Attack Timer")]
+    [Range(0f, 5f)] public float maxAtkTimer = 0f;
+    [SerializeField, ReadOnly] private bool atkTimerActive = false;
+    [SerializeField, ReadOnly] private float _currAttackTime = 0f;
 
     [SerializeField] private LayerMask _mask;
     private InputManager iManager = null;
@@ -44,12 +49,16 @@ public class PlayerCombatHandler : MonoBehaviour, ICombatible
             _cam = Camera.main;
 
         _currHealth = _playerStartingHealth;
+        // _currAttackTime = maxAtkTimer;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(iManager._keyBindings[InputAction.attack]))
             OnEntityAttack();
+        
+        if (atkTimerActive)
+            UpdateAttackTimer();
     }
 
     // void FixedUpdate() {}
@@ -60,9 +69,14 @@ public class PlayerCombatHandler : MonoBehaviour, ICombatible
         Debug.Log("COLLISION ENTER - player");
         #endif
 
+        if (other == null)
+            return;
+
         if (_playerAttackState == AttackState.attacking && other.gameObject != null)
         {
-            other.gameObject.GetComponent<EntityCombatHandler>().OnEntityDefend(this.gameObject);
+            var entityCombater = other.gameObject.GetComponent<EntityCombatHandler>();
+            if (entityCombater is ICombatible)
+                entityCombater.OnEntityDefend(this.gameObject);
         }
 
         if (other.gameObject.layer == entityLayerMask && _playerAttackState == AttackState.none)
@@ -71,10 +85,7 @@ public class PlayerCombatHandler : MonoBehaviour, ICombatible
         }
     }
 
-    void OnCollisionExit(Collision other)
-    {
-
-    }
+    // void OnCollisionExit(Collision other) {}
 
 #region Attack_Defend
     public void OnEntityAttack()
@@ -98,14 +109,16 @@ public class PlayerCombatHandler : MonoBehaviour, ICombatible
             }
         }
 
-        if (entity != null)
+        if (entity != null && _currAttackTime == 0f)
         {
+            ResetAttackTimer();
+            atkTimerActive = true;
 
             Vector3 launchDir = (entity.position - transform.position).normalized;
 
-            _rb.AddForce(launchDir * launchPower, ForceMode.VelocityChange);
+            // _rb.AddForce(launchDir * launchPower, ForceMode.VelocityChange);
 
-            // LeanTween.move(this.gameObject, entity.position, attackTime)
+            // LeanTween.move(this.gameObject, entity.position, attackLerpTime)
 
             // LTBezierPath _bPath = new LTBezierPath(new Vector3[]
             // {
@@ -115,10 +128,10 @@ public class PlayerCombatHandler : MonoBehaviour, ICombatible
             //     entity.position
             // });
 
-            // LeanTween.move(this.gameObject, _bPath, attackTime)
-            //     .setEase(LeanTweenType.linear)
-            //     .setOnStart(SetAttackStateAttacking)
-            //     .setOnComplete(SetAttackStateNone);
+            LeanTween.move(this.gameObject, entity.position, attackLerpTime)
+                .setEase(LeanTweenType.linear)
+                .setOnStart(SetAttackStateAttacking)
+                .setOnComplete(SetAttackStateNone);
         }
     }
 
@@ -132,4 +145,12 @@ public class PlayerCombatHandler : MonoBehaviour, ICombatible
 
     public void SetAttackStateAttacking() => _playerAttackState = AttackState.attacking;
     public void SetAttackStateNone() => _playerAttackState = AttackState.none;
+
+    private void ResetAttackTimer() => _currAttackTime = maxAtkTimer;
+    private void UpdateAttackTimer()
+    {
+        _currAttackTime = Mathf.Clamp((_currAttackTime - Time.deltaTime), 0f, maxAtkTimer);
+
+        if (_currAttackTime == 0f) atkTimerActive = false;
+    }
 }

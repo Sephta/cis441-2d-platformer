@@ -21,11 +21,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, ReadOnly] private Vector2 direction = Vector2.zero;
     [SerializeField, ReadOnly] private Vector2 prevDirection = Vector2.zero;
 
+    private StaticGroundedManager iGrounded = null;
+
 #region Unity_Functions
     void Awake()
     {
         if (GetComponent<Rigidbody>() != null)
             _rb = GetComponent<Rigidbody>();
+
+        if (iGrounded == null && StaticGroundedManager._inst != null)
+            iGrounded = StaticGroundedManager._inst;
     }
 
     // void Start() {}
@@ -52,8 +57,17 @@ public class PlayerMovement : MonoBehaviour
             
             float move = (Input.GetKey(InputManager._inst._keyBindings[InputAction.run])) ? movementSpeed * sprintMultiplier : movementSpeed;
 
+            Vector3 forceToAdd = (moveDir * move);
+
+            float terminalVelocity = ((forceToAdd.magnitude / _rb.drag) - Time.fixedDeltaTime * forceToAdd.magnitude) / _rb.mass;
+
             // if (_rb.velocity.y == 0)
-            _rb.AddForce((moveDir * move * Time.fixedDeltaTime), ForceMode.VelocityChange);
+            // _rb.AddForce((moveDir * move * Time.fixedDeltaTime), ForceMode.VelocityChange);
+            
+            // if (iGrounded.isGrounded)
+            _rb.velocity = new Vector3(moveDir.x == 0 ? _rb.velocity.x : moveDir.x * terminalVelocity, 
+                                       _rb.velocity.y, 
+                                       moveDir.y == 0 ? _rb.velocity.z : moveDir.y * terminalVelocity);
         }
     }
 #endregion
