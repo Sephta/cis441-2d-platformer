@@ -1,24 +1,18 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-/// <summary>
-/// Loads the Initialization Scene so that needed system dependencies can be accessed from any other scene in the editor
-/// </summary>
-public class InitManager : MonoBehaviour
+public class EntryPointInitializer : MonoBehaviour
 {
-#if UNITY_EDITOR
     [Header("Scene Data")]
 	public List<SceneData> scenesToLoad = new List<SceneData>();
-
 
     void Awake()
     {
 		LoadSceneListAdditive();
     }
 
-	private void LoadSceneListAdditive()
+    private void LoadSceneListAdditive()
 	{
 		foreach (var scene in scenesToLoad)
 		{
@@ -30,5 +24,4 @@ public class InitManager : MonoBehaviour
 			SceneManager.LoadSceneAsync(scene.sceneName, LoadSceneMode.Additive);
 		}
 	}
-#endif
 }
