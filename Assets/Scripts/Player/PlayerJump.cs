@@ -13,7 +13,7 @@ public class PlayerJump : MonoBehaviour
     [Header("Jump Data")]
     [Range(0f, 10f)] public int numJumps = 2;
     [Range(0f, 1000f)] public float jumpForce = 0f;
-    [Range(0f, 10f)] public float jumpForwardForce = 0f;
+    [Range(0f, 100f)] public float jumpForwardForce = 0f;
     [Range(0f, 1f)] public float jumpTapFalloff = 0.5f;
     [Range(0f, 10f)] public float gravityMultiplier = 0f;
     public Vector3 gravityDefault = new Vector3(0f, -9.81f, 0f);
@@ -68,7 +68,7 @@ public class PlayerJump : MonoBehaviour
                 if (_pm != null)
                 {
                     Vector3 moveDir = _pm.lockZAxis ? new Vector3(direction.x, 0f, 0f) : new Vector3(direction.x, 0f, direction.y);
-                    _rb.AddForce(moveDir * jumpForwardForce, ForceMode.Impulse);
+                    _rb.AddForce(moveDir * jumpForwardForce, ForceMode.Force);
                 }
             }
             
@@ -77,19 +77,13 @@ public class PlayerJump : MonoBehaviour
                 _rb.velocity = new Vector3(_rb.velocity.x, _rb.velocity.y * jumpTapFalloff, _rb.velocity.z);
             }
 
-            if (_rb.velocity.y < 0)
-            {
-                Physics.gravity = gravityDefault * gravityMultiplier;
-            }
-            else
-            {
-                Physics.gravity = gravityDefault;
-            }
+            Physics.gravity = (_rb.velocity.y < 0) ? gravityDefault * gravityMultiplier : gravityDefault;
         }
     }
+
     // void FixedUpdate() {}
 
-    #region Custom_Functions
+#region Custom_Functions
     private void UpdateJumpCounter()
     {
         if (iGrounded.isGrounded && !(_rb.velocity.y > 0))

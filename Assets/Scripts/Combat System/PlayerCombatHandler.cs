@@ -13,6 +13,7 @@ public class PlayerCombatHandler : MonoBehaviour, ICombatible
 {
     [Header("Dependencies")]
     public Rigidbody _rb = null;
+    public CapsuleCollider _col = null;
     public Camera _cam = null;
 
     [Header("Player Stats - Temporary")]
@@ -30,26 +31,32 @@ public class PlayerCombatHandler : MonoBehaviour, ICombatible
     [SerializeField, ReadOnly] private bool atkTimerActive = false;
     [SerializeField, ReadOnly] private float _currAttackTime = 0f;
 
-    [SerializeField] private LayerMask _mask;
+    [SerializeField] private LayerMask _groundMask;
+    [SerializeField] private LayerMask _entityMask;
     private InputManager iManager = null;
     private int entityLayerMask = int.MinValue;
 
-    void Start()
+    void Awake()
     {
         if (_rb == null && GetComponent<Rigidbody>() != null)
             _rb = GetComponent<Rigidbody>();
+        
+        if (_col == null && GetComponent<CapsuleCollider>() != null)
+            _col = GetComponent<CapsuleCollider>();
 
-        if (iManager == null && InputManager._inst != null)
-            iManager = InputManager._inst;
-        
-        if (entityLayerMask == int.MinValue)
-            entityLayerMask = LayerMask.GetMask("Entity");
-        
         if (_cam == null)
             _cam = Camera.main;
+    }
+
+    void Start()
+    {
+        if (iManager == null && InputManager._inst != null)
+            iManager = InputManager._inst;
+
+        if (entityLayerMask == int.MinValue)
+            entityLayerMask = LayerMask.GetMask("Entity");
 
         _currHealth = _playerStartingHealth;
-        // _currAttackTime = maxAtkTimer;
     }
 
     void Update()
@@ -65,9 +72,9 @@ public class PlayerCombatHandler : MonoBehaviour, ICombatible
 
     void OnCollisionEnter(Collision other)
     {
-        #if UNITY_EDITOR
-        Debug.Log("COLLISION ENTER - player");
-        #endif
+        // #if UNITY_EDITOR
+        // Debug.Log("COLLISION ENTER - player");
+        // #endif
 
         if (other == null)
             return;
@@ -90,7 +97,7 @@ public class PlayerCombatHandler : MonoBehaviour, ICombatible
 #region Attack_Defend
     public void OnEntityAttack()
     {
-        var hits = Physics.SphereCastAll(transform.position, attackRange, transform.up, 0.1f, _mask);
+        var hits = Physics.SphereCastAll(transform.position, attackRange, transform.up, 0.1f, _entityMask);
 
         float currMinDist = float.MaxValue;
 
@@ -116,22 +123,54 @@ public class PlayerCombatHandler : MonoBehaviour, ICombatible
 
             Vector3 launchDir = (entity.position - transform.position).normalized;
 
-            // _rb.AddForce(launchDir * launchPower, ForceMode.VelocityChange);
+            Vector3 worldSpaceColLocation = transform.TransformPoint(_col.center);
 
-            // LeanTween.move(this.gameObject, entity.position, attackLerpTime)
+            var capsuleHits = Physics.CapsuleCastAll(worldSpaceColLocation + new Vector3(0f, _col.height * 0.5f, 0f),
+                                                     worldSpaceColLocation, 
+                                                     _col.radius,
+                                                     (entity.position - transform.position),
+                                                     Vector3.Distance(transform.position, entity.position), _groundMask);
+            
+            bool shouldLean = true;
 
-            // LTBezierPath _bPath = new LTBezierPath(new Vector3[]
-            // {
-            //     this.transform.position,
-            //     this.transform.position + new Vector3(Random.Range(-1, 2), Random.Range(-1, 2), 0f),
-            //     this.transform.position + new Vector3(Random.Range(-1, 2), Random.Range(-1, 2), 0f),
-            //     entity.position
-            // });
+            foreach (var capHit in capsuleHits)
+            {
+                // #if UNITY_EDITOR
+                // Debug.Log("Hit: " + capHit.collider.gameObject.name);
+                // #endif
 
-            LeanTween.move(this.gameObject, entity.position, attackLerpTime)
+                // LayerMask.Equals(capHit.collider.gameObject, _groundMask);
+
+                if (capHit.collider.CompareTag("Ground"))
+                {
+                    // #if UNITY_EDITOR
+                    // Debug.Log("I Should Return now... ");
+                    // #endif
+                    shouldLean = false;
+                }
+            }
+
+
+            if (shouldLean)
+            {
+                #if UNITY_EDITOR
+                Debug.Log("Lean... ");
+                #endif
+
+                LeanTween.move(this.gameObject, 
+                           entity.position - (Vector3.one * entity.GetComponent<SphereCollider>().radius), 
+                           attackLerpTime)
                 .setEase(LeanTweenType.linear)
                 .setOnStart(SetAttackStateAttacking)
                 .setOnComplete(SetAttackStateNone);
+            }
+            else
+            {
+                #if UNITY_EDITOR
+                Debug.Log("No Lean... ");
+                #endif
+                _rb.AddForce(launchDir * launchPower, ForceMode.Impulse);
+            }
         }
     }
 

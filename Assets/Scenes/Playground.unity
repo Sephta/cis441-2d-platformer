@@ -3606,7 +3606,7 @@ GameObject:
   - component: {fileID: 95454589}
   m_Layer: 7
   m_Name: Entity Attack System Test (15)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4996,7 +4996,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121912704}
-  m_LocalRotation: {x: 0.070889026, y: 0.00000001664324, z: -0.0000000011827987, w: 0.9974842}
+  m_LocalRotation: {x: 0.07088901, y: -0.000000018227158, z: 0.0000000012953639, w: 0.9974842}
   m_LocalPosition: {x: 0, y: 3.25, z: -5.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7737,7 +7737,7 @@ GameObject:
   - component: {fileID: 202038080}
   m_Layer: 7
   m_Name: Entity Attack System Test (9)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7870,7 +7870,7 @@ GameObject:
   - component: {fileID: 206055030}
   m_Layer: 6
   m_Name: Ground Collider (12)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8233,7 +8233,7 @@ GameObject:
   - component: {fileID: 215324606}
   m_Layer: 7
   m_Name: Entity Attack System Test (4)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15927,7 +15927,7 @@ GameObject:
   - component: {fileID: 414028874}
   m_Layer: 6
   m_Name: Ground Collider (8)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18002,7 +18002,7 @@ GameObject:
   - component: {fileID: 462627005}
   m_Layer: 6
   m_Name: Ground Collider (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18542,7 +18542,7 @@ GameObject:
   - component: {fileID: 474656992}
   m_Layer: 6
   m_Name: Ground Collider (13)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19547,7 +19547,7 @@ GameObject:
   - component: {fileID: 492943344}
   m_Layer: 7
   m_Name: Entity Attack System Test (2)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20151,7 +20151,7 @@ GameObject:
   - component: {fileID: 506121680}
   m_Layer: 6
   m_Name: Ground Collider (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21913,7 +21913,7 @@ GameObject:
   - component: {fileID: 551669298}
   m_Layer: 6
   m_Name: Ground Collider (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22596,7 +22596,7 @@ GameObject:
   - component: {fileID: 566782227}
   m_Layer: 7
   m_Name: Entity Attack System Test (1)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23844,7 +23844,7 @@ GameObject:
   - component: {fileID: 601651054}
   m_Layer: 7
   m_Name: Entity Attack System Test (14)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24225,7 +24225,7 @@ GameObject:
   - component: {fileID: 611237666}
   m_Layer: 6
   m_Name: Ground Collider (9)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24836,7 +24836,7 @@ GameObject:
   - component: {fileID: 627731980}
   m_Layer: 7
   m_Name: Entity Attack System Test (3)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28870,7 +28870,7 @@ GameObject:
   - component: {fileID: 739389936}
   m_Layer: 6
   m_Name: Ground Collider (7)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31029,7 +31029,7 @@ GameObject:
   - component: {fileID: 804699108}
   m_Layer: 7
   m_Name: Entity Attack System Test (11)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32362,7 +32362,7 @@ GameObject:
   - component: {fileID: 834395699}
   m_Layer: 6
   m_Name: Ground Collider (5)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33703,7 +33703,7 @@ GameObject:
   - component: {fileID: 873946365}
   m_Layer: 6
   m_Name: Ground Collider (10)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34869,7 +34869,7 @@ GameObject:
   - component: {fileID: 893135103}
   m_Layer: 7
   m_Name: Entity Attack System Test (21)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37804,7 +37804,7 @@ GameObject:
   - component: {fileID: 975973025}
   m_Layer: 7
   m_Name: Entity Attack System Test (5)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40477,7 +40477,7 @@ GameObject:
   - component: {fileID: 1054065539}
   m_Layer: 7
   m_Name: Entity Attack System Test (13)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40582,7 +40582,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054065538}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.989233, y: 5.2752376, z: 0.9531522}
+  m_LocalPosition: {x: 24.489233, y: 0.52523756, z: 0.9531522}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1941135888}
@@ -47280,7 +47280,7 @@ GameObject:
   - component: {fileID: 1235010953}
   m_Layer: 7
   m_Name: Entity Attack System Test (19)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48523,7 +48523,7 @@ GameObject:
   - component: {fileID: 1264950083}
   m_Layer: 7
   m_Name: Entity Attack System Test (18)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53310,7 +53310,7 @@ GameObject:
   - component: {fileID: 1361327534}
   m_Layer: 6
   m_Name: Ground Collider (6)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54876,7 +54876,7 @@ GameObject:
   - component: {fileID: 1402782433}
   m_Layer: 7
   m_Name: Entity Attack System Test (16)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55728,7 +55728,7 @@ GameObject:
   - component: {fileID: 1422969934}
   m_Layer: 7
   m_Name: Entity Attack System Test (10)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58769,7 +58769,7 @@ GameObject:
   - component: {fileID: 1498324491}
   m_Layer: 7
   m_Name: Entity Attack System Test (8)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59492,7 +59492,7 @@ GameObject:
   - component: {fileID: 1508156564}
   m_Layer: 6
   m_Name: Ground Collider (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64887,7 +64887,7 @@ GameObject:
   - component: {fileID: 1650950194}
   m_Layer: 7
   m_Name: Entity Attack System Test (17)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66075,7 +66075,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670751939}
-  m_LocalRotation: {x: 0.070889026, y: 0.00000001664324, z: -0.0000000011827987, w: 0.9974842}
+  m_LocalRotation: {x: 0.07088901, y: -0.000000018227158, z: 0.0000000012953639, w: 0.9974842}
   m_LocalPosition: {x: 0, y: 3.25, z: -5.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -72449,7 +72449,7 @@ GameObject:
   - component: {fileID: 1827448332}
   m_Layer: 6
   m_Name: Ground Collider
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79423,7 +79423,7 @@ GameObject:
   - component: {fileID: 2000244890}
   m_Layer: 7
   m_Name: Entity Attack System Test (6)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80223,7 +80223,7 @@ GameObject:
   - component: {fileID: 2014596349}
   m_Layer: 6
   m_Name: Ground Collider (11)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80862,7 +80862,7 @@ GameObject:
   - component: {fileID: 2025819811}
   m_Layer: 6
   m_Name: Ground Collider
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80972,7 +80972,7 @@ GameObject:
   - component: {fileID: 2030323755}
   m_Layer: 7
   m_Name: Entity Attack System Test (7)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81628,7 +81628,7 @@ GameObject:
   - component: {fileID: 2039477317}
   m_Layer: 6
   m_Name: Ground Collider (14)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81976,7 +81976,7 @@ GameObject:
   - component: {fileID: 2043950104}
   m_Layer: 7
   m_Name: Entity Attack System Test
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82103,7 +82103,7 @@ GameObject:
   - component: {fileID: 2046106024}
   m_Layer: 7
   m_Name: Entity Attack System Test (12)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84515,7 +84515,7 @@ GameObject:
   - component: {fileID: 2106834238}
   m_Layer: 7
   m_Name: Entity Attack System Test (20)
-  m_TagString: Untagged
+  m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85996,6 +85996,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 284667673244454411, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 578bae5ae3ffdf045b14ef864ed2e089, type: 2}
     - target: {fileID: 526463905919064872, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: m_Drag
       value: 1
@@ -86026,15 +86030,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4004628548990599268, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: jumpForce
-      value: 425
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 4004628548990599268, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: jumpTapFalloff
-      value: 0.7
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 4004628548990599268, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: jumpForwardForce
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4004628548990599268, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: gravityMultiplier
@@ -86049,8 +86053,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7133389003119453037, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: dashStrength
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7133389003119453037, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: maxDashTimer
+      value: 1.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7133389003119453037, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: movementSpeed
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7133389003119453037, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: moveDirFalloff
@@ -86058,7 +86070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7133389003119453037, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: sprintMultiplier
-      value: 1.35
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7233926704780968053, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: m_Name
@@ -86098,7 +86110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8652980578872477264, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: launchPower
-      value: 25.1
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8652980578872477264, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: maxAtkTimer
@@ -86111,6 +86123,14 @@ PrefabInstance:
     - target: {fileID: 8652980578872477264, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: attackLerpTime
       value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652980578872477264, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: _entityMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652980578872477264, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: _groundMask.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 8748471296515370262, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: _collider

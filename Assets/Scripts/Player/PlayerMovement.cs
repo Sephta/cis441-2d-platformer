@@ -15,6 +15,12 @@ public class PlayerMovement : MonoBehaviour
     [Range(0f, 5f)] public float sprintMultiplier = 0f;
     [ReadOnly] public Vector3 moveDir = Vector3.zero;
     [Range(0f, 1f)] public float moveDirFalloff = 0.5f;
+    [Range(0f, 100f)] public float dashStrength = 0f;
+
+    [Header("Dash Timer")]
+    [Range(0f, 5f)] public float maxDashTimer = 0f;
+    [SerializeField, ReadOnly] private bool dashTimerActive = false;
+    [SerializeField, ReadOnly] private float _currDashTime = 0f;
 
     [Header("Debug Data")]
     // PRIVATE VARS
@@ -28,21 +34,35 @@ public class PlayerMovement : MonoBehaviour
     {
         if (GetComponent<Rigidbody>() != null)
             _rb = GetComponent<Rigidbody>();
+    }
 
+    void Start()
+    {
         if (iGrounded == null && StaticGroundedManager._inst != null)
             iGrounded = StaticGroundedManager._inst;
     }
 
-    // void Start() {}
-
     void Update()
     {
         GetDirectionVector();
+
+        if (dashTimerActive)
+            UpdateDashTimer();
         
         // if ((direction == Vector2.zero || (prevDirection != direction)) && _rb.velocity.y == 0)
         if (direction == Vector2.zero && _rb.velocity.y == 0)
         {
             _rb.velocity = new Vector3(_rb.velocity.x * moveDirFalloff, _rb.velocity.y, _rb.velocity.z * moveDirFalloff);
+        }
+
+        // If DASH KEY is pressed
+        if (Input.GetKeyDown(InputManager._inst._keyBindings[InputAction.run])
+            && !iGrounded.isGrounded
+            && _currDashTime == 0)
+        {
+            ResetDashTimer();
+            dashTimerActive = true;
+            _rb.AddForce(new Vector3(direction.x, direction.y, 0f) * dashStrength, ForceMode.Impulse);
         }
     }
 
@@ -64,15 +84,31 @@ public class PlayerMovement : MonoBehaviour
             // if (_rb.velocity.y == 0)
             // _rb.AddForce((moveDir * move * Time.fixedDeltaTime), ForceMode.VelocityChange);
             
-            // if (iGrounded.isGrounded)
-            _rb.velocity = new Vector3(moveDir.x == 0 ? _rb.velocity.x : moveDir.x * terminalVelocity, 
-                                       _rb.velocity.y, 
-                                       moveDir.y == 0 ? _rb.velocity.z : moveDir.y * terminalVelocity);
+            if (iGrounded.isGrounded)
+            {
+                _rb.velocity = new Vector3(moveDir.x == 0 ? _rb.velocity.x : moveDir.x * terminalVelocity, 
+                                           _rb.velocity.y, 
+                                           moveDir.y == 0 ? _rb.velocity.z : moveDir.y * terminalVelocity);
+            }
+            else
+            {
+                _rb.velocity = new Vector3(_rb.velocity.x + (forceToAdd.x * Time.fixedDeltaTime),
+                                           _rb.velocity.y, 
+                                           _rb.velocity.z + (forceToAdd.z * Time.fixedDeltaTime));
+            }
         }
     }
 #endregion
 
 #region Custom_Functions
+    private void ResetDashTimer() => _currDashTime = maxDashTimer;
+    private void UpdateDashTimer()
+    {
+        _currDashTime = Mathf.Clamp((_currDashTime - Time.deltaTime), 0f, maxDashTimer);
+
+        if (_currDashTime == 0f) dashTimerActive = false;
+    }
+
     /// <summary>
     /// Finds and normalizes input direction using custom InputManager system
     /// </summary>
