@@ -18,12 +18,15 @@ public class PlayerJump : MonoBehaviour
     [Range(0f, 10f)] public float gravityMultiplier = 0f;
     public Vector3 gravityDefault = new Vector3(0f, -9.81f, 0f);
     [Range(0f, 1f)] public float hangTime = 0f;
+    [Range(0f, 1f)] public float jumpBufferTime = 0f;
 
     // PRIVATE VARS
     private InputManager iManager = null;
     private StaticGroundedManager iGrounded = null;
     
     [Header("Debug Data")]
+    [SerializeField, ReadOnly] private bool jumpBufferActive = false;
+    [SerializeField, ReadOnly] private float currJumpBufferCount = 0;
     [SerializeField, ReadOnly] private int currJumpCount = 0;
     [SerializeField, ReadOnly] private float currHangTime = 0f;
     [SerializeField, ReadOnly] private Vector2 direction = Vector2.zero;
@@ -56,8 +59,11 @@ public class PlayerJump : MonoBehaviour
 
         if (iManager != null && iGrounded != null)
         {
+            UpdateJumpBuffer();
             UpdateJumpCounter();
 
+            // if ((currJumpBufferCount > 0) 
+            //     && (iGrounded.isGrounded || currJumpCount > 0))
             if (Input.GetKeyDown(iManager._keyBindings[InputAction.jump]) 
                 && (iGrounded.isGrounded || currJumpCount > 0))
             {
@@ -77,13 +83,33 @@ public class PlayerJump : MonoBehaviour
                 _rb.velocity = new Vector3(_rb.velocity.x, _rb.velocity.y * jumpTapFalloff, _rb.velocity.z);
             }
 
-            Physics.gravity = (_rb.velocity.y < 0) ? gravityDefault * gravityMultiplier : gravityDefault;
+            // Vector3 gravity = (_rb.velocity.y < 0) ? gravityDefault * gravityMultiplier : gravityDefault;
+            _rb.AddForce((_rb.velocity.y < 0) ? gravityDefault * gravityMultiplier : gravityDefault, ForceMode.Force);
         }
     }
 
     // void FixedUpdate() {}
 
 #region Custom_Functions
+    private void UpdateJumpBuffer()
+    {
+        if (Input.GetKeyDown(iManager._keyBindings[InputAction.jump]))
+        {
+            ResetJumpBufferTimer();
+            jumpBufferActive = true;
+        }
+        else if (jumpBufferActive)
+            UpdateJumpBufferTimer();
+    }
+
+    private void ResetJumpBufferTimer() => currJumpBufferCount = jumpBufferTime;
+    private void UpdateJumpBufferTimer()
+    {
+        currJumpBufferCount = Mathf.Clamp((currJumpBufferCount - Time.deltaTime), 0f, jumpBufferTime);
+
+        if (currJumpBufferCount == 0f) jumpBufferActive = false;
+    }
+
     private void UpdateJumpCounter()
     {
         if (iGrounded.isGrounded && !(_rb.velocity.y > 0))
