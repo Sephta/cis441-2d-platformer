@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     public bool lockZAxis = false;
     [Range(0f, 100f)] public float movementSpeed = 0f;
     [Range(0f, 100f)] public float airStrafeSpeed = 0f;
-    [Range(0f, 5f)] public float sprintMultiplier = 0f;
     [ReadOnly] public Vector3 moveDir = Vector3.zero;
     [Range(0f, 1f)] public float moveDirFalloff = 0.5f;
     [Range(0f, 100f)] public float dashStrength = 0f;
@@ -57,9 +56,9 @@ public class PlayerMovement : MonoBehaviour
         if (dashTimerActive)
             UpdateDashTimer();
         
-        // if ((direction == Vector2.zero || (prevDirection != direction)) && _rb.velocity.y == 0)
-        if ((direction == Vector2.zero || (direction.x == 0 && direction.y != 0)) 
-            && _rb.velocity.y == 0)
+        if ((direction.x == 0 || (prevDirection != direction)))
+        // if ((direction == Vector2.zero || (direction.x == 0 && direction.y != 0)) 
+            // && _rb.velocity.y == 0)
         {
             _rb.velocity = new Vector3(_rb.velocity.x * moveDirFalloff, _rb.velocity.y, _rb.velocity.z * moveDirFalloff);
         }
@@ -72,10 +71,8 @@ public class PlayerMovement : MonoBehaviour
             && !iGrounded.isGrounded && currDashCount > 0)
         {
             currDashCount = Mathf.Clamp(currDashCount - 1, 0, numDashes);
-            // ResetDashTimer();
-            // dashTimerActive = true;
 
-            _rb.AddForce(new Vector3(direction.x, direction.y, 0f) * dashStrength, ForceMode.VelocityChange);
+            _rb.AddForce(new Vector3(direction.x, direction.y, 0f) * dashStrength, ForceMode.Impulse);
         }
     }
 
@@ -87,26 +84,23 @@ public class PlayerMovement : MonoBehaviour
                 moveDir = new Vector3(direction.x, 0, direction.y);
             else
                 moveDir = new Vector3(direction.x, 0, 0);
-            
-            float move = (Input.GetKey(InputManager._inst._keyBindings[InputAction.run])) ? movementSpeed * sprintMultiplier : movementSpeed;
 
-            Vector3 forceToAdd = (moveDir * move);
+            Vector3 forceToAdd = (moveDir * movementSpeed);
 
+            // The maximum speed of the player based on specified movememntSpeed
             float terminalVelocity = ((forceToAdd.magnitude / _rb.drag) - Time.fixedDeltaTime * forceToAdd.magnitude) / _rb.mass;
-
-            // if (_rb.velocity.y == 0)
-            // _rb.AddForce((moveDir * move * Time.fixedDeltaTime), ForceMode.VelocityChange);
             
             if (iGrounded.isGrounded)
             {
                 _rb.velocity = new Vector3(moveDir.x == 0 ? _rb.velocity.x : moveDir.x * terminalVelocity, 
                                            _rb.velocity.y, 
-                                           moveDir.y == 0 ? _rb.velocity.z : moveDir.y * terminalVelocity);
+                                           _rb.velocity.z);
             }
             else
             {
                 _rb.velocity = new Vector3(_rb.velocity.x + (moveDir.x * airStrafeSpeed * Time.fixedDeltaTime),
                                            _rb.velocity.y, 
+                                        //    _rb.velocity.z);
                                            _rb.velocity.z + (moveDir.z * airStrafeSpeed * Time.fixedDeltaTime));
             }
         }
@@ -155,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
         else
             direction.x = 0;
         
-        direction = direction.normalized;
+        // direction = direction.normalized;
     }
 #endregion
 }
