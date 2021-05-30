@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         if (dashTimerActive)
             UpdateDashTimer();
         
-        if ((direction.x == 0 || (prevDirection != direction)))
+        if ((direction.x == 0 || (prevDirection != direction)) && _rb.velocity.y == 0)
         // if ((direction == Vector2.zero || (direction.x == 0 && direction.y != 0)) 
             // && _rb.velocity.y == 0)
         {
