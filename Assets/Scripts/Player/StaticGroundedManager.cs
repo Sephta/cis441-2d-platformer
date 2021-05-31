@@ -10,7 +10,7 @@ public class StaticGroundedManager : MonoBehaviour
 
     [Header("Grounded Data")]
     [ReadOnly] public bool isGrounded = false;
-    [SerializeField] private bool _debug = false;
+    [Space, SerializeField] private bool _debug = false;
     [SerializeField] private LayerMask _mask;
 
     void Awake()

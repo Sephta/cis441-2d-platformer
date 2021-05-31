@@ -9,14 +9,9 @@ public class PlayerJump : MonoBehaviour
     [Header("Dependencies")]
     public Rigidbody _rb = null;
     public PlayerMovement _pm = null;
-
-    [Header("Jump Data")]
-    [Range(0f, 10f)] public int numJumps = 2;
-    [Range(0f, 1000f)] public float jumpForce = 0f;
-    [Range(0f, 1000f)] public float jumpForwardForce = 0f;
-    [Range(0f, 1f)] public float jumpTapFalloff = 0.5f;
-    [Range(0f, 1f)] public float hangTime = 0f;
-    [Range(0f, 1f)] public float jumpBufferTime = 0f;
+    
+    [Space]
+    [Expandable, SerializeField] private PlayerStatsSO _ps = null;
 
     // PRIVATE VARS
     private InputManager iManager = null;
@@ -26,7 +21,6 @@ public class PlayerJump : MonoBehaviour
     [SerializeField, ReadOnly] private bool jumpBufferActive = false;
     [SerializeField, ReadOnly] private float currJumpBufferCount = 0;
     [SerializeField, ReadOnly] private int currJumpCount = 0;
-    [SerializeField, ReadOnly] private float currHangTime = 0f;
     [SerializeField, ReadOnly] private Vector2 direction = Vector2.zero;
     [SerializeField, ReadOnly] private Vector2 prevDirection = Vector2.zero;
 
@@ -46,14 +40,12 @@ public class PlayerJump : MonoBehaviour
         if (iGrounded == null && StaticGroundedManager._inst != null)
             iGrounded = StaticGroundedManager._inst;
 
-        currJumpCount = numJumps;
-        currHangTime = hangTime;
+        currJumpCount = _ps.NumJumps;
     }
 
     void Update()
     {
         GetDirectionVector();
-        UpdateHangTime();
 
         if (iManager != null && iGrounded != null)
         {
@@ -67,16 +59,16 @@ public class PlayerJump : MonoBehaviour
             {
                 PlayerAnimationController.AnimatorJumpEvent?.Invoke();
 
-                currJumpCount = Mathf.Clamp((currJumpCount - 1), 0, numJumps);
+                currJumpCount = Mathf.Clamp((currJumpCount - 1), 0, _ps.NumJumps);
 
                 // Applies upward force 
-                _rb.velocity = new Vector3(_rb.velocity.x, jumpForce * Time.fixedDeltaTime, _rb.velocity.z);
+                _rb.velocity = new Vector3(_rb.velocity.x, _ps.JumpForce * Time.fixedDeltaTime, _rb.velocity.z);
 
                 // Adds force to the jump based on the direction of movement
-                if (_pm != null && (numJumps >= currJumpCount) && (currJumpCount >= (numJumps - 1)))
+                if (_pm != null && (_ps.NumJumps >= currJumpCount) && (currJumpCount >= (_ps.NumJumps - 1)))
                 {
                     Vector3 moveDir = _pm.lockZAxis ? new Vector3(direction.x, 0f, 0f) : new Vector3(direction.x, 0f, direction.y);
-                    _rb.AddForce(moveDir * jumpForwardForce, ForceMode.Force);
+                    _rb.AddForce(moveDir * _ps.JumpForwardForce, ForceMode.Force);
                 }
             }
         }
@@ -96,10 +88,10 @@ public class PlayerJump : MonoBehaviour
             UpdateJumpBufferTimer();
     }
 
-    private void ResetJumpBufferTimer() => currJumpBufferCount = jumpBufferTime;
+    private void ResetJumpBufferTimer() => currJumpBufferCount = _ps.JumpBufferTime;
     private void UpdateJumpBufferTimer()
     {
-        currJumpBufferCount = Mathf.Clamp((currJumpBufferCount - Time.deltaTime), 0f, jumpBufferTime);
+        currJumpBufferCount = Mathf.Clamp((currJumpBufferCount - Time.deltaTime), 0f, _ps.JumpBufferTime);
 
         if (currJumpBufferCount == 0f) jumpBufferActive = false;
     }
@@ -108,14 +100,8 @@ public class PlayerJump : MonoBehaviour
     {
         if (iGrounded.isGrounded && !(_rb.velocity.y > 0))
         {
-            currJumpCount = numJumps;
+            currJumpCount = _ps.NumJumps;
         }
-    }
-
-    private void UpdateHangTime()
-    {    
-        if (iGrounded.isGrounded) currHangTime = hangTime;
-        else currHangTime = Mathf.Clamp((currHangTime - Time.deltaTime), 0f, hangTime);
     }
 
     /// <summary>

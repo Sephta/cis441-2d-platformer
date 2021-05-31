@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c200b367e2dc3804e9d24d7cef206208, type: 3}
+  m_Name: PlaygroundPlayerStats
+  m_EditorClassIdentifier: 
+  showAll: 0
+  showMovementData: 0
+  showDashData: 0
+  showJumpData: 1
+  _movementSpeed: 6
+  _airStrafeSpeed: 15
+  _moveDirFalloff: 0.72
+  _numDashes: 2
+  _dashStrength: 35
+  _maxDashTimer: 0.125
+  _numJumps: 2
+  _jumpForce: 500
+  _jumpForwardForce: 345
+  _jumpTapFalloff: 0.239
+  _jumpBufferTime: 0.1

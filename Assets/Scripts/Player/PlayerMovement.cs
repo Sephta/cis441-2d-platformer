@@ -8,30 +8,23 @@ public class PlayerMovement : MonoBehaviour
     // PUBLIC VARS
     [Header("Dependencies")]
     public Rigidbody _rb = null;
+    [Space, Expandable, SerializeField] private PlayerStatsSO _ps = null;
 
-    [Header("Movement Data")]
+    [Space]
+    [Header("Misc.")]
     public bool lockZAxis = false;
     [Range(0f, 10f)] public float gravityMultiplier = 0f;
     public Vector3 gravityDefault = new Vector3(0f, -9.81f, 0f);
-    [Range(0f, 100f)] public float movementSpeed = 0f;
-    [Range(0f, 100f)] public float airStrafeSpeed = 0f;
-    [ReadOnly] public Vector3 moveDir = Vector3.zero;
-    [Range(0f, 1f)] public float moveDirFalloff = 0.5f;
-    public bool isDashing = false;
-    [Range(0f, 100f)] public float dashStrength = 0f;
-    [Range(0f, 10f)] public float dashMaxDistance = 0f;
-
-    [Header("Dash Counter")]
-    [Range(0f, 5f)] public int numDashes = 0;
-    [SerializeField, ReadOnly] private int currDashCount = 0;
-
-    [Header("Dash Timer")]
-    [Range(0f, 5f)] public float maxDashTimer = 0f;
-    [SerializeField, ReadOnly] private bool dashTimerActive = false;
-    [SerializeField, ReadOnly] private float _currDashTime = 0f;
+    
+    [Header("Movement Data")]
+    [ReadOnly] public bool isDashing = false;
+    [SerializeField, ReadOnly] private Vector3 moveDir = Vector3.zero;
+    // [SerializeField, Range(0f, 10f)] private float dashMaxDistance = 0f;
 
     [Header("Debug Data")]
-    // PRIVATE VARS
+    [SerializeField, ReadOnly] private int currDashCount = 0;
+    [SerializeField, ReadOnly] private bool dashTimerActive = false;
+    [SerializeField, ReadOnly] private float _currDashTime = 0f;
     [SerializeField, ReadOnly] private Vector3 cachedVelocity = Vector3.zero;
     [SerializeField, ReadOnly] private Vector2 direction = Vector2.zero;
     [SerializeField, ReadOnly] private Vector2 prevDirection = Vector2.zero;
@@ -50,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         if (iGrounded == null && StaticGroundedManager._inst != null)
             iGrounded = StaticGroundedManager._inst;
         
-        currDashCount = numDashes;
+        currDashCount = _ps.NumDashes;
     }
 
     void Update()
@@ -65,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         // if ((direction == Vector2.zero || (direction.x == 0 && direction.y != 0)) 
             // && _rb.velocity.y == 0)
         {
-            _rb.velocity = new Vector3(_rb.velocity.x * moveDirFalloff, _rb.velocity.y, _rb.velocity.z * moveDirFalloff);
+            _rb.velocity = new Vector3(_rb.velocity.x * _ps.MoveDirFalloff, _rb.velocity.y, _rb.velocity.z * _ps.MoveDirFalloff);
         }
 
         // If DASH KEY is pressed
@@ -77,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerAnimationController.AnimatorDashEvent?.Invoke();
 
             ResetDashTimer();
-            currDashCount = Mathf.Clamp(currDashCount - 1, 0, numDashes);
+            currDashCount = Mathf.Clamp(currDashCount - 1, 0, _ps.NumDashes);
 
             // Cache players current velocity
             cachedVelocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
@@ -85,8 +78,8 @@ public class PlayerMovement : MonoBehaviour
             // _rb.AddForce(new Vector3(direction.x, direction.y, 0f) * dashStrength, ForceMode.Impulse);
             Vector2 dashDir = direction.normalized;
             _rb.velocity = new Vector3(
-                dashDir.x * dashStrength,
-                dashDir.y * dashStrength,
+                dashDir.x * _ps.DashStrength,
+                dashDir.y * _ps.DashStrength,
                 _rb.velocity.z
             );
         }
@@ -103,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
             else
                 moveDir = new Vector3(direction.x, 0, 0);
 
-            Vector3 forceToAdd = (moveDir * movementSpeed);
+            Vector3 forceToAdd = (moveDir * _ps.MovementSpeed);
 
             // The maximum speed of the player based on specified movememntSpeed
             float terminalVelocity = ((forceToAdd.magnitude / _rb.drag) - Time.fixedDeltaTime * forceToAdd.magnitude) / _rb.mass;
@@ -116,9 +109,9 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                _rb.velocity = new Vector3(_rb.velocity.x + (moveDir.x * airStrafeSpeed * Time.fixedDeltaTime),
+                _rb.velocity = new Vector3(_rb.velocity.x + (moveDir.x * _ps.AirStrafeSpeed * Time.fixedDeltaTime),
                                            _rb.velocity.y,
-                                           _rb.velocity.z + (moveDir.z * airStrafeSpeed * Time.fixedDeltaTime));
+                                           _rb.velocity.z + (moveDir.z * _ps.AirStrafeSpeed * Time.fixedDeltaTime));
             }
         }
 
@@ -133,28 +126,28 @@ public class PlayerMovement : MonoBehaviour
     {
         if (iGrounded.isGrounded && !(_rb.velocity.y > 0))
         {
-            currDashCount = numDashes;
+            currDashCount = _ps.NumDashes;
         }
     }
 
     private void ResetDashTimer()
     {
-        _currDashTime = maxDashTimer;
+        _currDashTime = _ps.MaxDashTimer;
         dashTimerActive = true;
     }
 
     private void UpdateDashTimer()
     {
-        _currDashTime = Mathf.Clamp((_currDashTime - Time.deltaTime), 0f, maxDashTimer);
+        _currDashTime = Mathf.Clamp((_currDashTime - Time.deltaTime), 0f, _ps.MaxDashTimer);
 
         if (_currDashTime == 0f)
         {
             dashTimerActive = false;
             // _rb.velocity = cachedVelocity;
             _rb.velocity = new Vector3(
-                direction.x * movementSpeed,
+                direction.x * _ps.MovementSpeed,
                 0f,
-                direction.y * movementSpeed
+                direction.y * _ps.MovementSpeed
             );
         }
     }
