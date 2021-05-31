@@ -15,7 +15,7 @@ MonoBehaviour:
   showAll: 0
   showMovementData: 0
   showDashData: 0
-  showJumpData: 1
+  showJumpData: 0
   _movementSpeed: 6
   _airStrafeSpeed: 15
   _moveDirFalloff: 0.72
