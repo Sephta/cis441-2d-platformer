@@ -73,6 +73,9 @@ public class PlayerMovement : MonoBehaviour
             && !iGrounded.isGrounded && currDashCount > 0 && !isDashing && direction != Vector2.zero)
         {
             isDashing = true;
+
+            PlayerAnimationController.AnimatorDashEvent?.Invoke();
+
             ResetDashTimer();
             currDashCount = Mathf.Clamp(currDashCount - 1, 0, numDashes);
 

@@ -65,6 +65,8 @@ public class PlayerJump : MonoBehaviour
             if (Input.GetKeyDown(iManager._keyBindings[InputAction.jump]) 
                 && (iGrounded.isGrounded || currJumpCount > 0))
             {
+                PlayerAnimationController.AnimatorJumpEvent?.Invoke();
+
                 currJumpCount = Mathf.Clamp((currJumpCount - 1), 0, numJumps);
 
                 // Applies upward force 
