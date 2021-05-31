@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
         // If DASH KEY is pressed
         if (Input.GetKeyDown(InputManager._inst._keyBindings[InputAction.run])
-            && !iGrounded.isGrounded && currDashCount > 0 && !isDashing)
+            && !iGrounded.isGrounded && currDashCount > 0 && !isDashing && direction != Vector2.zero)
         {
             isDashing = true;
             ResetDashTimer();
@@ -89,14 +89,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (_currDashTime == 0) isDashing = false;
-        
-        // if ()
-
-
-        // Applies constant gravity to the player (Custom gravity values to help jump feel weightier)
-        if (!isDashing)
-            _rb.velocity += (_rb.velocity.y < 0) ? gravityDefault * gravityMultiplier * Time.deltaTime : gravityDefault * Time.deltaTime;
-            // _rb.AddForce((_rb.velocity.y < 0) ? gravityDefault * gravityMultiplier : gravityDefault, ForceMode.Force);
     }
 
     void FixedUpdate()
@@ -126,6 +118,10 @@ public class PlayerMovement : MonoBehaviour
                                            _rb.velocity.z + (moveDir.z * airStrafeSpeed * Time.fixedDeltaTime));
             }
         }
+
+        // Applies constant gravity to the player (Custom gravity values to help jump feel weightier)
+        if (!isDashing)
+            _rb.velocity += (_rb.velocity.y < 0) ? gravityDefault * gravityMultiplier * Time.fixedDeltaTime : gravityDefault * Time.fixedDeltaTime;
     }
 #endregion
 
