@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manualInput: 1
-  numActions: 7
+  numActions: 8
   _keyBindings_test:
   - action: 0
     key: 119
@@ -169,6 +169,8 @@ MonoBehaviour:
     key: 304
   - action: 6
     key: 323
+  - action: 9
+    key: 112
 --- !u!4 &1185446075
 Transform:
   m_ObjectHideFlags: 0

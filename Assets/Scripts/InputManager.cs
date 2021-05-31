@@ -7,15 +7,16 @@ using UnityEngine;
 // each input action in both "written" and numeric form
 public enum InputAction
 {
-    moveUp = 0,
-    moveDown = 1,
-    moveLeft = 2,
+    moveUp    = 0,
+    moveDown  = 1,
+    moveLeft  = 2,
     moveRight = 3,
-    run = 4,
-    jump = 5,
-    attack = 6,
-    nextItem = 7,
-    prevItem = 8
+    run       = 4,
+    jump      = 5,
+    attack    = 6,
+    nextItem  = 7,
+    prevItem  = 8,
+    pause     = 9,
 }
 
 #endregion
