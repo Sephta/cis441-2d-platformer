@@ -11,11 +11,15 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement Data")]
     public bool lockZAxis = false;
+    [Range(0f, 10f)] public float gravityMultiplier = 0f;
+    public Vector3 gravityDefault = new Vector3(0f, -9.81f, 0f);
     [Range(0f, 100f)] public float movementSpeed = 0f;
     [Range(0f, 100f)] public float airStrafeSpeed = 0f;
     [ReadOnly] public Vector3 moveDir = Vector3.zero;
     [Range(0f, 1f)] public float moveDirFalloff = 0.5f;
+    public bool isDashing = false;
     [Range(0f, 100f)] public float dashStrength = 0f;
+    [Range(0f, 10f)] public float dashMaxDistance = 0f;
 
     [Header("Dash Counter")]
     [Range(0f, 5f)] public int numDashes = 0;
@@ -28,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Debug Data")]
     // PRIVATE VARS
+    [SerializeField, ReadOnly] private Vector3 cachedVelocity = Vector3.zero;
     [SerializeField, ReadOnly] private Vector2 direction = Vector2.zero;
     [SerializeField, ReadOnly] private Vector2 prevDirection = Vector2.zero;
 
@@ -64,16 +69,34 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // If DASH KEY is pressed
-        // if (Input.GetKeyDown(InputManager._inst._keyBindings[InputAction.run])
-        //     && !iGrounded.isGrounded
-        //     && _currDashTime == 0)
         if (Input.GetKeyDown(InputManager._inst._keyBindings[InputAction.run])
-            && !iGrounded.isGrounded && currDashCount > 0)
+            && !iGrounded.isGrounded && currDashCount > 0 && !isDashing)
         {
+            isDashing = true;
+            ResetDashTimer();
             currDashCount = Mathf.Clamp(currDashCount - 1, 0, numDashes);
 
-            _rb.AddForce(new Vector3(direction.x, direction.y, 0f) * dashStrength, ForceMode.Impulse);
+            // Cache players current velocity
+            cachedVelocity = new Vector3(_rb.velocity.x, 0f, _rb.velocity.z);
+
+            // _rb.AddForce(new Vector3(direction.x, direction.y, 0f) * dashStrength, ForceMode.Impulse);
+            Vector2 dashDir = direction.normalized;
+            _rb.velocity = new Vector3(
+                dashDir.x * dashStrength,
+                dashDir.y * dashStrength,
+                _rb.velocity.z
+            );
         }
+
+        if (_currDashTime == 0) isDashing = false;
+        
+        // if ()
+
+
+        // Applies constant gravity to the player (Custom gravity values to help jump feel weightier)
+        if (!isDashing)
+            _rb.velocity += (_rb.velocity.y < 0) ? gravityDefault * gravityMultiplier * Time.deltaTime : gravityDefault * Time.deltaTime;
+            // _rb.AddForce((_rb.velocity.y < 0) ? gravityDefault * gravityMultiplier : gravityDefault, ForceMode.Force);
     }
 
     void FixedUpdate()
@@ -99,8 +122,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 _rb.velocity = new Vector3(_rb.velocity.x + (moveDir.x * airStrafeSpeed * Time.fixedDeltaTime),
-                                           _rb.velocity.y, 
-                                        //    _rb.velocity.z);
+                                           _rb.velocity.y,
                                            _rb.velocity.z + (moveDir.z * airStrafeSpeed * Time.fixedDeltaTime));
             }
         }
@@ -116,12 +138,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void ResetDashTimer() => _currDashTime = maxDashTimer;
+    private void ResetDashTimer()
+    {
+        _currDashTime = maxDashTimer;
+        dashTimerActive = true;
+    }
+
     private void UpdateDashTimer()
     {
         _currDashTime = Mathf.Clamp((_currDashTime - Time.deltaTime), 0f, maxDashTimer);
 
-        if (_currDashTime == 0f) dashTimerActive = false;
+        if (_currDashTime == 0f)
+        {
+            dashTimerActive = false;
+            // _rb.velocity = cachedVelocity;
+            _rb.velocity = new Vector3(
+                direction.x * movementSpeed,
+                0f,
+                direction.y * movementSpeed
+            );
+        }
     }
 
     /// <summary>

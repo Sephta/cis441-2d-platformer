@@ -15,8 +15,6 @@ public class PlayerJump : MonoBehaviour
     [Range(0f, 1000f)] public float jumpForce = 0f;
     [Range(0f, 1000f)] public float jumpForwardForce = 0f;
     [Range(0f, 1f)] public float jumpTapFalloff = 0.5f;
-    [Range(0f, 10f)] public float gravityMultiplier = 0f;
-    public Vector3 gravityDefault = new Vector3(0f, -9.81f, 0f);
     [Range(0f, 1f)] public float hangTime = 0f;
     [Range(0f, 1f)] public float jumpBufferTime = 0f;
 
@@ -79,14 +77,6 @@ public class PlayerJump : MonoBehaviour
                     _rb.AddForce(moveDir * jumpForwardForce, ForceMode.Force);
                 }
             }
-            
-            // if (Input.GetKeyUp(iManager._keyBindings[InputAction.jump]) && _rb.velocity.y > 0)
-            // {
-            //     _rb.velocity = new Vector3(_rb.velocity.x, _rb.velocity.y * jumpTapFalloff * Time.fixedDeltaTime, _rb.velocity.z);
-            // }
-
-            // Applies constant gravity to the player (Custom gravity values to help jump feel weightier)
-            _rb.AddForce((_rb.velocity.y < 0) ? gravityDefault * gravityMultiplier : gravityDefault, ForceMode.Force);
         }
     }
 
