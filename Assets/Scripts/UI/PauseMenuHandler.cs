@@ -64,6 +64,13 @@ public class PauseMenuHandler : MonoBehaviour
 #region Pause Menu Functions
     public void OnPlayerPressQuitToMenu(string SceneToLoad)
     {
+        #if UNITY_EDITOR
+        Debug.Log("Player pressed Quit to Menu button...");
+        #endif
+
+        Time.timeScale = defaultTimeScale;
+        TogglePauseState();
+
         SceneManager.LoadScene(SceneToLoad);
     }
 #endregion

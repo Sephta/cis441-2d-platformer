@@ -19,7 +19,7 @@ public class MainMenuHandler : MonoBehaviour
     public void OnPlayerPressOptions()
     {
         #if UNITY_EDITOR
-        Debug.Log("Player pressed options button.");
+        Debug.Log("Player pressed options button...");
         #endif
     }
 
