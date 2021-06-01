@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 
 using NaughtyAttributes;
-using TMPro;
 
 
 public class PauseMenuHandler : MonoBehaviour
@@ -58,6 +58,13 @@ public class PauseMenuHandler : MonoBehaviour
         {
             pauseMenu.SetActive(isPaused);
         }
+    }
+#endregion
+
+#region Pause Menu Functions
+    public void OnPlayerPressQuitToMenu(string SceneToLoad)
+    {
+        SceneManager.LoadScene(SceneToLoad);
     }
 #endregion
 }
