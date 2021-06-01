@@ -48,6 +48,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (PauseMenuHandler.isPaused)
+            return;
+
         GetDirectionVector();
         UpdateDashCounter();
 
@@ -89,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_rb != null)
+        if (_rb != null && !PauseMenuHandler.isPaused)
         {
             if (!lockZAxis)
                 moveDir = new Vector3(direction.x, 0, direction.y);
