@@ -16,6 +16,8 @@ public class FPSTrackerHandler : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float timeInterval = 0f;
     [SerializeField, ReadOnly] private int avgFPS = 0;
     [SerializeField, ReadOnly] private float currTimeTracked = 0f;
+
+    [SerializeField, ReadOnly] private GameSettingsHandler GameSettings = null;
     
     void Start()
     {
@@ -23,6 +25,9 @@ public class FPSTrackerHandler : MonoBehaviour
         if (_fpsText == null)
             Debug.LogWarning("Warning - variable \"_fpsText\" in <" + gameObject.name + "> is null.");
         #endif
+
+        if (GameSettingsHandler._inst != null)
+            GameSettings = GameSettingsHandler._inst;
 
         currTimeTracked = timeInterval;
     }
@@ -35,6 +40,11 @@ public class FPSTrackerHandler : MonoBehaviour
 
     private void UpdateFPSText()
     {
+        if (!_fpsText.gameObject.activeSelf || GameSettings == null)
+            return;
+        
+        _fpsText.gameObject.SetActive(GameSettings.showFPS);
+        
         if (useTimeInterval)
             UpdateTimeTracked();
 
