@@ -1,35 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+// using UnityEngine.UI;
+// using UnityEngine.SceneManagement;
 
 public class MainMenuHandler : MonoBehaviour
 {
     [Space]
     [Header("UI")]
     [SerializeField] private GameObject SettingsMenu = null;
+    [SerializeField] private GameObject LevelSelectMenu = null;
 
 #region Menu Functions
-    public void OnPlayerPressStart(string SceneToLoad)
+    public void OnPlayerPressStart()
     {
-        #if UNITY_EDITOR
-        Debug.Log("Player pressed start button...");
-        Debug.Log("Preparing to load scene: " + SceneToLoad);
-        #endif
+        if (LevelSelectMenu == null)
+            return;
 
-        
-        // for (int i = 0; i < SceneManager.sceneCount; i++)
-        // {
-        //     var currScene = SceneManager.GetSceneAt(i);
-        //     if (currScene.name == "GlobalManagers")
-        //     {
-        //         SceneManager.LoadSceneAsync(SceneToLoad);
-        //         return;
-        //     }
-        // }
-
-        SceneManager.LoadScene(SceneToLoad);
+        LevelSelectMenu.SetActive(true);
     }
 
     public void OnPlayerPressOptions()

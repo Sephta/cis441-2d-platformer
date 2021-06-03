@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Playground.unity
     guid: 0a0d243e36175654b97f470b67deca8d
   - enabled: 1
+    path: Assets/Scenes/The Forest.unity
+    guid: 7dca9d2848b40964180bb22b0f07aa72
+  - enabled: 1
     path: Assets/Scenes/GlobalManagers.unity
     guid: b5088662149a7e042b26a613b3f71e17
   - enabled: 0
