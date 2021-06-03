@@ -1,5 +1,53 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5615352600231689847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5804241450586660303}
+  - component: {fileID: 2444163597728381778}
+  m_Layer: 0
+  m_Name: Ghost Trail Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5804241450586660303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5615352600231689847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 212541914204586625}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2444163597728381778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5615352600231689847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9375004c58ba2b64682a7adcfa162c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghost: {fileID: 2334199746419917389, guid: 8d3f9213900edf34fa31c012ba2d7b66, type: 3}
+  ghostParent: {fileID: 0}
+  timerActive: 0
+  delayDuration: 1
+  currentDelayTime: 0
 --- !u!1 &7233926704780968053
 GameObject:
   m_ObjectHideFlags: 0
@@ -34,6 +82,7 @@ Transform:
   m_Children:
   - {fileID: 2816559267277759983}
   - {fileID: 2589548548892181648}
+  - {fileID: 5804241450586660303}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -80,19 +129,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 526463905919064872}
+  _ps: {fileID: 0}
   lockZAxis: 0
   gravityMultiplier: 0
   gravityDefault: {x: 0, y: -9.81, z: 0}
-  movementSpeed: 25
-  airStrafeSpeed: 0
-  moveDir: {x: 0, y: 0, z: 0}
-  moveDirFalloff: 0.5
   isDashing: 0
-  dashStrength: 0
-  dashMaxDistance: 0
-  numDashes: 0
+  moveDir: {x: 0, y: 0, z: 0}
   currDashCount: 0
-  maxDashTimer: 0
   dashTimerActive: 0
   _currDashTime: 0
   cachedVelocity: {x: 0, y: 0, z: 0}
@@ -112,16 +155,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb: {fileID: 526463905919064872}
   _pm: {fileID: 0}
-  numJumps: 2
-  jumpForce: 0
-  jumpForwardForce: 0
-  jumpTapFalloff: 0.5
-  hangTime: 0
-  jumpBufferTime: 0
+  _ps: {fileID: 0}
   jumpBufferActive: 0
   currJumpBufferCount: 0
   currJumpCount: 0
-  currHangTime: 0
   direction: {x: 0, y: 0}
   prevDirection: {x: 0, y: 0}
 --- !u!114 &8652980578872477264
