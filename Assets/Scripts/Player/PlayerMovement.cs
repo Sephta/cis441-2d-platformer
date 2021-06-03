@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using NaughtyAttributes;
 using UnityEngine;
+
+using NaughtyAttributes;
+// using MilkShake;
+
 
 public class PlayerMovement : MonoBehaviour
 {
     // PUBLIC VARS
     [Header("Dependencies")]
     public Rigidbody _rb = null;
+    // [SerializeField] private Shaker camToShake = null;
+    [SerializeField] private CinemachineCamShake cinemachineCamShake = null;
     [Space, Expandable, SerializeField] private PlayerStatsSO _ps = null;
 
     [Space]
@@ -15,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public bool lockZAxis = false;
     [Range(0f, 10f)] public float gravityMultiplier = 0f;
     public Vector3 gravityDefault = new Vector3(0f, -9.81f, 0f);
+    // [SerializeField, Expandable] private ShakePreset dashCamShakeEffect;
     
     [Header("Movement Data")]
     [ReadOnly] public bool isDashing = false;
@@ -43,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         if (iGrounded == null && StaticGroundedManager._inst != null)
             iGrounded = StaticGroundedManager._inst;
         
+        // camToShake = Camera.main.GetComponent<Shaker>();
         currDashCount = _ps.NumDashes;
     }
 
@@ -69,6 +76,9 @@ public class PlayerMovement : MonoBehaviour
             && !iGrounded.isGrounded && currDashCount > 0 && !isDashing && direction != Vector2.zero)
         {
             isDashing = true;
+
+            if (cinemachineCamShake != null)
+                cinemachineCamShake.ShakeCamera();
 
             PlayerAnimationController.AnimatorDashEvent?.Invoke();
 

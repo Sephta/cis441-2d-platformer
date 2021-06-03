@@ -11,6 +11,8 @@
 /[Mm]emoryCaptures/
 /Assets/ThirdParty/
 
+/Assets/polyperfect/**
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
@@ -59,3 +61,4 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Assets/polyperfect.meta

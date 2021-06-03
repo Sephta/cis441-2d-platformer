@@ -52,6 +52,8 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void ChangeAnimationState()
     {
+        _anim.SetBool("isGrounded", iGrounded.isGrounded);
+
         _anim.SetFloat("playerVelocityY", _pm._rb.velocity.y);
 
         _anim.SetBool("isMoving", 
