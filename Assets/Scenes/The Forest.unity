@@ -8219,6 +8219,14 @@ PrefabInstance:
       propertyPath: ghostParent
       value: 
       objectReference: {fileID: 1099151907}
+    - target: {fileID: 4677549424256472147, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677549424256472147, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7133389003119453037, guid: 21887c731e0cdc64b8cac2365573b7ae, type: 3}
       propertyPath: cinemachineCamShake
       value: 
@@ -11406,11 +11414,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 423989194424305241, guid: 3c0f34bdc04ce1d48a0e31edc476def3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000051581397
+      value: 0.000000005145287
       objectReference: {fileID: 0}
     - target: {fileID: 423989194424305241, guid: 3c0f34bdc04ce1d48a0e31edc476def3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -3.6657793e-10
+      value: -3.6566433e-10
       objectReference: {fileID: 0}
     - target: {fileID: 423989194424305241, guid: 3c0f34bdc04ce1d48a0e31edc476def3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -13192,11 +13200,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4043193149607513051, guid: 196535eb24fcce24dbed8963c9c1186d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000051581397
+      value: 0.000000005145287
       objectReference: {fileID: 0}
     - target: {fileID: 4043193149607513051, guid: 196535eb24fcce24dbed8963c9c1186d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -3.6657793e-10
+      value: -3.6566433e-10
       objectReference: {fileID: 0}
     - target: {fileID: 4043193149607513051, guid: 196535eb24fcce24dbed8963c9c1186d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
