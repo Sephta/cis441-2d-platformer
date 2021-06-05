@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, ReadOnly] private bool dashTimerActive = false;
     [SerializeField, ReadOnly] private float _currDashTime = 0f;
     [SerializeField, ReadOnly] private Vector3 cachedVelocity = Vector3.zero;
-    [SerializeField, ReadOnly] private Vector2 direction = Vector2.zero;
+    [SerializeField, ReadOnly] public Vector2 direction = Vector2.zero;
     [SerializeField, ReadOnly] private Vector2 prevDirection = Vector2.zero;
 
     private StaticGroundedManager iGrounded = null;
@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         if (PauseMenuHandler.isPaused)
             return;
 
-        GetDirectionVector();
+        UpdateDirectionVector();
         UpdateDashCounter();
 
         if (dashTimerActive)
@@ -173,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Finds and normalizes input direction using custom InputManager system
     /// </summary>
-    private void GetDirectionVector()
+    private void UpdateDirectionVector()
     {
         if (InputManager._inst == null)
             return;
