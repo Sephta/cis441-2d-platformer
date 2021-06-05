@@ -66,6 +66,7 @@ GameObject:
   - component: {fileID: 4004628548990599268}
   - component: {fileID: 8652980578872477264}
   - component: {fileID: 96790163}
+  - component: {fileID: 5803591763856229059}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -133,11 +134,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 526463905919064872}
+  cinemachineCamShake: {fileID: 0}
   _ps: {fileID: 11400000, guid: 9308a4f90e2e3354098984b3665c1423, type: 2}
   lockZAxis: 1
   gravityMultiplier: 3.125
   gravityDefault: {x: 0, y: -19.62, z: 0}
-  dashCamShakeEffect: {fileID: 11400000, guid: b47a4bc717d52804d9ff0d238dd61e26, type: 2}
   isDashing: 0
   moveDir: {x: 0, y: 0, z: 0}
   currDashCount: 0
@@ -208,6 +209,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63cf0d7a137ae464ba802a93a074ef54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5803591763856229059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7233926704780968053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fec61e1c4baef9f4ab47563ba54dccc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canRecieveInput: 0
+  inputRecieved: 0
+  gameStart: 0
 --- !u!1 &8669471945094092273
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, ReadOnly] private Vector2 prevDirection = Vector2.zero;
 
     private StaticGroundedManager iGrounded = null;
+    private ComboManager iCombo = null;
 
 #region Unity_Functions
     void Awake()
@@ -48,6 +49,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (iGrounded == null && StaticGroundedManager._inst != null)
             iGrounded = StaticGroundedManager._inst;
+
+        if (iCombo == null && ComboManager._inst != null)
+            iCombo = ComboManager._inst;
         
         // camToShake = Camera.main.GetComponent<Shaker>();
         currDashCount = _ps.NumDashes;
@@ -73,7 +77,8 @@ public class PlayerMovement : MonoBehaviour
 
         // If DASH KEY is pressed
         if (Input.GetKeyDown(InputManager._inst._keyBindings[InputAction.run])
-            && !iGrounded.isGrounded && currDashCount > 0 && !isDashing && direction != Vector2.zero)
+            && !iGrounded.isGrounded && currDashCount > 0 && !isDashing 
+            && direction != Vector2.zero && !iCombo.isAttacking)
         {
             isDashing = true;
 
@@ -102,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_rb != null && !PauseMenuHandler.isPaused)
+        if (_rb != null && !PauseMenuHandler.isPaused && !iCombo.isAttacking)
         {
             if (!lockZAxis)
                 moveDir = new Vector3(direction.x, 0, direction.y);
@@ -129,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Applies constant gravity to the player (Custom gravity values to help jump feel weightier)
-        if (!isDashing)
+        if (!isDashing && !PauseMenuHandler.isPaused)
             _rb.velocity += (_rb.velocity.y < 0) ? gravityDefault * gravityMultiplier * Time.fixedDeltaTime : gravityDefault * Time.fixedDeltaTime;
     }
 #endregion

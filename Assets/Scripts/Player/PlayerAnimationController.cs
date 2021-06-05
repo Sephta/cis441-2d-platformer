@@ -9,6 +9,7 @@ public class PlayerAnimationController : MonoBehaviour
     public static UnityAction AnimatorDashEvent;
 
     private StaticGroundedManager iGrounded = null;
+    private ComboManager iCombo = null;
 
     [Header("Dependencies")]
     [SerializeField] private PlayerMovement _pm = null;
@@ -31,6 +32,9 @@ public class PlayerAnimationController : MonoBehaviour
     {
         if (StaticGroundedManager._inst != null)
             iGrounded = StaticGroundedManager._inst;
+        
+        if (ComboManager._inst != null)
+            iCombo = ComboManager._inst;
     }
 
     private void OnEnable()
@@ -52,6 +56,8 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void ChangeAnimationState()
     {
+        iCombo.canRecieveInput = iGrounded.isGrounded;
+
         _anim.SetBool("isGrounded", iGrounded.isGrounded);
 
         _anim.SetFloat("playerVelocityY", _pm._rb.velocity.y);
