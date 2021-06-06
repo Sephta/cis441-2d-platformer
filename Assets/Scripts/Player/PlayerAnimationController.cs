@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+using NaughtyAttributes;
+
+
 public class PlayerAnimationController : MonoBehaviour
 {
     public static UnityAction AnimatorJumpEvent;
@@ -18,6 +21,9 @@ public class PlayerAnimationController : MonoBehaviour
 
     [Header("Tweakable Data")]
     [SerializeField, Range(0f, 1f)] private float movementEpsilon = 0f;
+
+    [SerializeField, ReadOnly] public Vector2 direction = Vector2.zero;
+    [SerializeField, ReadOnly] private Vector2 prevDirection = Vector2.zero;
 
     private void Awake()
     {
@@ -51,12 +57,16 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void Update()
     {
+        UpdateDirectionVector();
         ChangeAnimationState();
     }
 
     private void ChangeAnimationState()
     {
         iCombo.canRecieveInput = iGrounded.isGrounded;
+
+        _anim.SetFloat("playerDirectionX", direction.x);
+        _anim.SetFloat("playerDirectionY", direction.y);
 
         _anim.SetBool("isGrounded", iGrounded.isGrounded);
 
@@ -82,4 +92,29 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void OnJumpAnimationCompleted() => _anim.SetBool("isJumping", false);
     public void OnDashAnimationCompleted() => _anim.SetBool("isDashing", false);
+
+    private void UpdateDirectionVector()
+    {
+        if (InputManager._inst == null)
+            return;
+        
+        prevDirection = direction;
+        
+        InputManager iManager = InputManager._inst;
+
+        if (Input.GetKey(iManager._keyBindings[InputAction.moveUp]))
+            direction.y = 1.0f;
+        else if (Input.GetKey(iManager._keyBindings[InputAction.moveDown]))
+            direction.y = -1.0f;
+        else
+            direction.y = 0;
+        if (Input.GetKey(iManager._keyBindings[InputAction.moveLeft]))
+            direction.x = -1.0f;
+        else if (Input.GetKey(iManager._keyBindings[InputAction.moveRight]))
+            direction.x = 1.0f;
+        else
+            direction.x = 0;
+        
+        // direction = direction.normalized;
+    }
 }

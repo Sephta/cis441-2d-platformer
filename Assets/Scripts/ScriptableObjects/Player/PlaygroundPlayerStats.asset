@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c200b367e2dc3804e9d24d7cef206208, type: 3}
   m_Name: PlaygroundPlayerStats
   m_EditorClassIdentifier: 
-  showAll: 0
+  showAll: 1
   showMovementData: 0
-  showDashData: 0
-  showJumpData: 0
+  showDashData: 1
+  showJumpData: 1
   _movementSpeed: 6
   _airStrafeSpeed: 15
   _moveDirFalloff: 0.72
   _numDashes: 2
-  _dashStrength: 35
-  _maxDashTimer: 0.125
+  _dashStrength: 25
+  _maxDashTimer: 0.15
   _numJumps: 2
-  _jumpForce: 500
-  _jumpForwardForce: 345
+  _jumpForce: 506
+  _jumpForwardForce: 450
   _jumpTapFalloff: 0.239
   _jumpBufferTime: 0.1

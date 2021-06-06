@@ -119,18 +119,23 @@ public class PlayerMovement : MonoBehaviour
             // The maximum speed of the player based on specified movememntSpeed
             float terminalVelocity = ((forceToAdd.magnitude / _rb.drag) - Time.fixedDeltaTime * forceToAdd.magnitude) / _rb.mass;
             
-            if (iGrounded.isGrounded)
-            {
+            // if (iGrounded.isGrounded)
+            // {
+            //     _rb.velocity = new Vector3(moveDir.x == 0 ? _rb.velocity.x : moveDir.x * terminalVelocity, 
+            //                                _rb.velocity.y, 
+            //                                _rb.velocity.z);
+            // }
+            // else
+            // {
+            //     _rb.velocity = new Vector3(_rb.velocity.x + (moveDir.x * _ps.AirStrafeSpeed * Time.fixedDeltaTime),
+            //                                _rb.velocity.y,
+            //                                _rb.velocity.z + (moveDir.z * _ps.AirStrafeSpeed * Time.fixedDeltaTime));
+            // }
+            
+            if (!isDashing)
                 _rb.velocity = new Vector3(moveDir.x == 0 ? _rb.velocity.x : moveDir.x * terminalVelocity, 
-                                           _rb.velocity.y, 
-                                           _rb.velocity.z);
-            }
-            else
-            {
-                _rb.velocity = new Vector3(_rb.velocity.x + (moveDir.x * _ps.AirStrafeSpeed * Time.fixedDeltaTime),
                                            _rb.velocity.y,
-                                           _rb.velocity.z + (moveDir.z * _ps.AirStrafeSpeed * Time.fixedDeltaTime));
-            }
+                                           _rb.velocity.z);
         }
 
         // Applies constant gravity to the player (Custom gravity values to help jump feel weightier)

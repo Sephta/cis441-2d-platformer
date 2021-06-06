@@ -137,8 +137,8 @@ MonoBehaviour:
   cinemachineCamShake: {fileID: 0}
   _ps: {fileID: 11400000, guid: 9308a4f90e2e3354098984b3665c1423, type: 2}
   lockZAxis: 1
-  gravityMultiplier: 3.125
-  gravityDefault: {x: 0, y: -19.62, z: 0}
+  gravityMultiplier: 2.21
+  gravityDefault: {x: 0, y: -9.81, z: 0}
   isDashing: 0
   moveDir: {x: 0, y: 0, z: 0}
   currDashCount: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canRecieveInput: 0
   inputRecieved: 0
-  gameStart: 0
+  isAttacking: 0
 --- !u!1 &8669471945094092273
 GameObject:
   m_ObjectHideFlags: 0
