@@ -16,6 +16,8 @@ public class IdleBehavior : EntityBehavior
     [SerializeField, Range(0f, 5f)] private float sphereCastRadius = 0.5f;
     [Layer, SerializeField] private int _mask;
 
+    [SerializeField] private Animator _anim = null;
+
     #if UNITY_EDITOR
     [Space]
     [Header("Gizmo Data")]

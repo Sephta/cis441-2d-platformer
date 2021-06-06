@@ -48,7 +48,7 @@ MonoBehaviour:
   _sr: {fileID: 4677549424256472147}
   _pm: {fileID: 7133389003119453037}
   timerActive: 0
-  destroyDelay: 1
+  destroyDelay: 0.5
   delayDuration: 0.241
   currentDelayTime: 0
 --- !u!1 &7233926704780968053
@@ -345,6 +345,8 @@ MonoBehaviour:
   _pj: {fileID: 4004628548990599268}
   _anim: {fileID: 5514130609983246038}
   movementEpsilon: 0.1
+  direction: {x: 0, y: 0}
+  prevDirection: {x: 0, y: 0}
 --- !u!114 &7415887670007977174
 MonoBehaviour:
   m_ObjectHideFlags: 0

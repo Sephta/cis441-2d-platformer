@@ -16,10 +16,11 @@ public class FollowBehavior : EntityBehavior
     [Header("Connectable Elements")]
     [SerializeField] private Rigidbody _rb = null;
     [ReadOnly] public GameObject objectToFollow = null;
+    [SerializeField] private Animator _anim = null;
 
     [Space]
     [Header("Follow Data")]
-    [SerializeField, Range(0f, 1000f)] private float movementSpeed = 0f;
+    [SerializeField, Range(0f, 25f)] private float movementSpeed = 0f;
     [SerializeField, Range(0f, 1f)] private float movementFalloff = 1f;
     [SerializeField, ReadOnly] private Vector3 moveDir = Vector3.zero;
 
@@ -41,12 +42,10 @@ public class FollowBehavior : EntityBehavior
         // Step 1. Perform the desired behavior
         moveDir = (objectToFollow.transform.position - this.transform.position).normalized;
         _rb.velocity = new Vector3(
-            moveDir.x * movementSpeed * Time.deltaTime,
+            moveDir.x * movementSpeed,
             _rb.velocity.y,
             _rb.velocity.z
         );
-
-        // _rb.AddForce((new Vector3(moveDir.x, 0f, 0f)) * movementSpeed, ForceMode.Impulse);
 
         // Step 2. Determine if behavior should switch
 
@@ -70,6 +69,7 @@ public class FollowBehavior : EntityBehavior
             {
                 _rb.velocity *= movementFalloff;
                 resultBehavior = attackBehavior;
+                _anim.SetTrigger("attack");
                 attackBehavior.ResetAtkTimer();
             }
         }

@@ -17,6 +17,8 @@ public class AttackBehavior : EntityBehavior
     [SerializeField] private float maxAtkTime = 0f;
     [SerializeField, ReadOnly] private float currAtkTime = 0f;
 
+    [SerializeField] private Animator _anim = null;
+
     private void Start()
     {
         ResetAtkTimer();
