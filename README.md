@@ -19,3 +19,23 @@ The final feature set in the vertical slice I built is as follows:
     * Utilized unity's built in system for Occlusion Culling of objects outside of the main camera's view frustrum
     * Utilized a free Asset Store package to combine meshes on an object for better optimization.
     * Took time and care to plan out which assets in the scene should remain static vs dynamic
+ * And many more details I will delve into bellow...
+
+## Where I spent most of my time on this project
+
+Most of my development time went into learning how best to combine 2D and 3D elements to make the game look cohesive enough to be playable, as well as the character controller + combat mechanics.
+
+
+## What is NOT mine
+
+* Assets used:
+      * NaughtyAttributes
+      * Cinemachine
+      * Mesh Combiner
+      * LeanTween (UI Tweening library)
+      * Low Poly Ultimate Pack by user POLYPERFECT
+* Assets from Itch.io
+      * Slime Animations by [Reff SQ](https://reff-sq.itch.io/ "Reff SQ profile page")
+      * Glacial Mountains by [vnitti](https://vnitti.itch.io/)
+      * Animated Pixel Adventurer by [rvros](https://rvros.itch.io/)
+      * Pixel Art Froest by [edermunizz](https://edermunizz.itch.io/)
