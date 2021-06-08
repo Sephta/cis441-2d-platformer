@@ -13,6 +13,9 @@ public class CollectableManager : MonoBehaviour
     [Header("Collectables Data")]
     public List<GameObject> collectables = new List<GameObject>();
     public List<GameObject> secrets = new List<GameObject>();
+    public int MaxCollectables;
+    public int MaxSecrets;
+    public int MaxEnemies;
     [SerializeField, ReadOnly] private int numCollectablesFound = 0;
     [SerializeField, ReadOnly] private int numSecretsFound = 0;
     [SerializeField, ReadOnly] private int numEnemiesKilled = 0;
@@ -38,6 +41,9 @@ public class CollectableManager : MonoBehaviour
         ResetNumCollectablesFound();
         ResetNumSecretsFound();
         ResetNumEnemiesKilled();
+
+        MaxCollectables = collectables.Count;
+        MaxSecrets = secrets.Count;
     }
 
     public void IncrementNumEnemiesKilled()

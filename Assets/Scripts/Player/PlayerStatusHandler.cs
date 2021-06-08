@@ -8,11 +8,9 @@ using NaughtyAttributes;
 
 public class PlayerStatusHandler : MonoBehaviour
 {
+    [SerializeField] private ProgressBar UIHealthBar = null;
     [SerializeField] private Animator _anim = null;
-    [SerializeField] private CinemachineVirtualCamera virtualCam = null;
-    [SerializeField] private Camera playerCam = null;
     [SerializeField] private Vector3 spawnLocation = Vector3.zero;
-    [SerializeField] private Vector3 camLocation = Vector3.zero;
 
     [Header("Player Stats")]
     public int maxHealth = 0;
@@ -28,6 +26,13 @@ public class PlayerStatusHandler : MonoBehaviour
     void Start()
     {
         SetHealth(maxHealth);
+        UIHealthBar.max = maxHealth;
+        UIHealthBar.current = maxHealth;
+    }
+
+    void OnEnable()
+    {
+        OnPlayerRevive();
     }
 
     void Update()
@@ -36,13 +41,27 @@ public class PlayerStatusHandler : MonoBehaviour
             OnPlayerDeath();
     }
 
-    private void OnPlayerDeath()
+    public void DisablePlayerPlayables()
     {
-        _anim.SetTrigger("OnPlayerDeath");
         foreach (var component in componentsToDisable)
         {
             component.enabled = false;
         }
+    }
+
+    public void EnablePlayerPlayables()
+    {
+        foreach(var component in componentsToDisable)
+        {
+            component.enabled = true;
+        }
+    }
+
+    public void OnPlayerDeath()
+    {
+        _anim.SetTrigger("OnPlayerDeath");
+        
+        DisablePlayerPlayables();
 
         if (DeathScreenHandler._inst != null)
             DeathScreenHandler._inst.DisplayDeathScreen();
@@ -53,29 +72,25 @@ public class PlayerStatusHandler : MonoBehaviour
         _anim.SetTrigger("OnPlayerRevive");
         
         PlayerInteractionHandler.isPlayerHurting = false;
+        PauseMenuHandler.isPaused = false;
+        Time.timeScale = 1f;
+
+        EnablePlayerPlayables();
 
         SetHealth(maxHealth);
 
-        foreach(var component in componentsToDisable)
-        {
-            component.enabled = true;
-        }
-
         this.transform.position = spawnLocation;
 
-        if (virtualCam != null)
-        {
-            // virtualCam.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = camLocation;
-            virtualCam.enabled = false;
-            virtualCam.transform.SetPositionAndRotation(camLocation, Quaternion.Euler(8.13f, 0f, 0f));
-            playerCam.transform.SetPositionAndRotation(camLocation, Quaternion.Euler(8.13f, 0f, 0f));
-            virtualCam.enabled = true;
-        }
+        UIHealthBar.max = maxHealth;
+        UIHealthBar.current = maxHealth;
     }
 
     public void SetHealth(int amount) =>
         currHealth = amount;
 
-    public void UpdateHealth(int amount) =>
+    public void UpdateHealth(int amount)
+    {
         currHealth = (int) Mathf.Clamp((float)(currHealth - amount), 0f, (float) maxHealth);
+        UIHealthBar.current = currHealth;
+    }
 }
