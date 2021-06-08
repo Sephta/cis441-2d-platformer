@@ -19,12 +19,17 @@ The final feature set in the vertical slice I built is as follows:
     * Utilized unity's built in system for Occlusion Culling of objects outside of the main camera's view frustrum
     * Utilized a free Asset Store package to combine meshes on an object for better optimization.
     * Took time and care to plan out which assets in the scene should remain static vs dynamic
+ * Collectables system for tracking and maintaining talleys of level collectables
+      * I also drew the pixel art for the collectables in the scene although they are not entirely suitable to the artstyle I was aiming for
  * And many more details I will delve into bellow...
 
 ## Where I spent most of my time on this project
 
 Most of my development time went into learning how best to combine 2D and 3D elements to make the game look cohesive enough to be playable, as well as the character controller + combat mechanics.
 
+Another large chunk of time was level design, as I was not able to build any level design tools to speed up the process I ended up placing assets by hand in the scene (which is very tedious).
+
+I spent an unecessary amount of time prototyping different shaders for Universal Rendering Pipeline Sprites. I was trying to allow 2D sprites to cast shadows from 3D lights in the scene but due to some newer changes to Unity's Shader graph I was unable to implement this and scrapped what I had.
 
 ## What is NOT mine
 
