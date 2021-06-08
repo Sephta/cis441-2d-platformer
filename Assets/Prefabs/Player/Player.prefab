@@ -1,5 +1,96 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4583048650867339504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9158109292005809796}
+  - component: {fileID: 5412043403200943719}
+  - component: {fileID: 2106722133579941606}
+  - component: {fileID: 3965600403326792451}
+  m_Layer: 3
+  m_Name: Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9158109292005809796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4583048650867339504}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 212541914204586625}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5412043403200943719
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4583048650867339504}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 1, z: 1}
+  m_Center: {x: 0.5, y: 0, z: 0}
+--- !u!114 &2106722133579941606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4583048650867339504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3193a8fdf06bda84786c0dcdba01138b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagToDetect: Entity
+  _playerAnimator: {fileID: 5514130609983246038}
+  OnPlayerHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2106722133579941606}
+        m_TargetAssemblyTypeName: PlayerInteractionHandler, Assembly-CSharp
+        m_MethodName: HandlePlayerHitEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3965600403326792451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4583048650867339504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54157567cad41a84e98206d82b8a0164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _col: {fileID: 5412043403200943719}
+  colliderPos: {x: 0.5, y: 0, z: 0}
+  direction: {x: 0, y: 0}
+  prevDirection: {x: 0, y: 0}
 --- !u!1 &5615352600231689847
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,7 +120,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 212541914204586625}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2444163597728381778
 MonoBehaviour:
@@ -64,7 +155,6 @@ GameObject:
   - component: {fileID: 284667673244454411}
   - component: {fileID: 7133389003119453037}
   - component: {fileID: 4004628548990599268}
-  - component: {fileID: 8652980578872477264}
   - component: {fileID: 96790163}
   - component: {fileID: 5803591763856229059}
   m_Layer: 3
@@ -87,6 +177,7 @@ Transform:
   m_Children:
   - {fileID: 2816559267277759983}
   - {fileID: 2589548548892181648}
+  - {fileID: 9158109292005809796}
   - {fileID: 5804241450586660303}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -167,36 +258,6 @@ MonoBehaviour:
   currJumpCount: 0
   direction: {x: 0, y: 0}
   prevDirection: {x: 0, y: 0}
---- !u!114 &8652980578872477264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7233926704780968053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf052ef87892e514680893345d267367, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rb: {fileID: 526463905919064872}
-  _col: {fileID: 0}
-  _cam: {fileID: 0}
-  _playerStartingHealth: 100
-  _currHealth: 1
-  _playerAttackState: 0
-  launchPower: 25
-  attackRange: 8
-  attackLerpTime: 0.125
-  maxAtkTimer: 0.5
-  atkTimerActive: 0
-  _currAttackTime: 0
-  _groundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  _entityMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!114 &96790163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +299,7 @@ GameObject:
   - component: {fileID: 3081847078262342308}
   - component: {fileID: 7415887670007977174}
   - component: {fileID: 216957772}
+  - component: {fileID: 1904608673}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -361,6 +423,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sr: {fileID: 4677549424256472147}
   _parentRB: {fileID: 526463905919064872}
+  direction: {x: 0, y: 0}
+  prevDirection: {x: 0, y: 0}
 --- !u!114 &216957772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +437,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2d9b07615dca844a2967ee5c462edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1904608673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8669471945094092273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89445b909e6103b4aadd0354e0717bec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _col: {fileID: 5412043403200943719}
 --- !u!1 &9164874594675837972
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +463,7 @@ GameObject:
   - component: {fileID: 8748471296515370262}
   m_Layer: 3
   m_Name: GroundCheck
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -418,7 +495,7 @@ CapsuleCollider:
   m_Radius: 0.25
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: -0.05, y: -0.06, z: 0}
+  m_Center: {x: -0.05, y: -0.15, z: 0}
 --- !u!114 &8748471296515370262
 MonoBehaviour:
   m_ObjectHideFlags: 0

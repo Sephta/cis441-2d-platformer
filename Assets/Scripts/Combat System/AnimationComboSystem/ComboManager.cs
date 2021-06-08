@@ -15,17 +15,14 @@ public class ComboManager : MonoBehaviour
         Attack03    = 3,
     }
 
+    
+    public static ComboManager _inst;
 
     [Header("Combo Data")]
-
     [ReadOnly] public bool canRecieveInput = true;
     [ReadOnly] public bool inputRecieved = false;
 
     [ReadOnly] public bool isAttacking = false;
-
-    [Header("Instance Data")]
-    
-    public static ComboManager _inst;
 
     void Awake()
     {

@@ -47,7 +47,8 @@ public class PlayerJump : MonoBehaviour
     {
         GetDirectionVector();
 
-        if (iManager != null && iGrounded != null && !PauseMenuHandler.isPaused)
+        if (iManager != null && iGrounded != null && !PauseMenuHandler.isPaused 
+            && !PlayerInteractionHandler.isPlayerHurting)
         {
             UpdateJumpBuffer();
             UpdateJumpCounter();

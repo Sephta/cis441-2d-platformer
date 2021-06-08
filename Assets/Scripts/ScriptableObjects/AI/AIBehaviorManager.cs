@@ -11,6 +11,7 @@ public class AIBehaviorManager : MonoBehaviour
     [Header("Management Configurables")]
     [SerializeField] private EntityBehavior defaultStartingBehavior = null;
     [SerializeField, ReadOnly] private EntityBehavior currentBehavior = null;
+    [SerializeField] private BoxCollider _col = null;
 
     private void Start()
     {
@@ -35,5 +36,28 @@ public class AIBehaviorManager : MonoBehaviour
     private void BehaviorSwitch(EntityBehavior newBehavior)
     {
         currentBehavior = newBehavior;
+    }
+
+    public void OnEntityHit(GameObject hitBy)
+    {
+        #if UNITY_EDITOR
+        Debug.Log("[Entity] hit by: " + hitBy.name);
+        #endif
+    }
+
+    public void EnableEntityHitbox()
+    {
+        if (_col != null)
+        {
+            _col.enabled = true;
+        }
+    }
+
+    public void DisableEntityHitbox()
+    {
+        if (_col != null)
+        {
+            _col.enabled = false;
+        }
     }
 }

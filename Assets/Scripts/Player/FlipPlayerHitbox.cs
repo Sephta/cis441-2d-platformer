@@ -1,40 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
-using NaughtyAttributes;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
-public class FlipPlayerSprite : MonoBehaviour
-{
-    [Header("Dependencies")]
-    [SerializeField] private SpriteRenderer _sr = null;
-    [SerializeField] private Rigidbody _parentRB = null;
+using NaughtyAttributes;
 
+
+public class FlipPlayerHitbox : MonoBehaviour
+{
+    [Header("Configurable Data")]
+    // [SerializeField] private Rigidbody _rb = null;
+    [SerializeField] private BoxCollider _col = null;
+    [SerializeField] private Vector3 colliderPos = Vector3.zero;
     [SerializeField, ReadOnly] public Vector2 direction = Vector2.zero;
     [SerializeField, ReadOnly] private Vector2 prevDirection = Vector2.zero;
 
-    private void Awake()
+    void Update()
     {
-        if (_sr == null && GetComponent<SpriteRenderer>() != null)
-            _sr = GetComponent<SpriteRenderer>();
-        
-        if (_parentRB == null)
-            _parentRB = GetComponentInParent<Rigidbody>();
-    }
-
-    private void Update()
-    {    
-        FlipSprite();
         UpdateDirectionVector();
+        FlipHitbox();
     }
 
-    private void FlipSprite()
+    private void FlipHitbox()
     {
-
         if (direction.x > 0)
-            _sr.flipX = false;
+            _col.center = colliderPos;
         else if (direction.x < 0)
-            _sr.flipX = true;
+            _col.center = new Vector3(
+                -colliderPos.x,
+                colliderPos.y,
+                colliderPos.z
+            );
     }
 
     /// <summary>
@@ -64,4 +59,5 @@ public class FlipPlayerSprite : MonoBehaviour
         
         // direction = direction.normalized;
     }
+
 }

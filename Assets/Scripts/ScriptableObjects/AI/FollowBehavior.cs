@@ -15,6 +15,9 @@ public class FollowBehavior : EntityBehavior
     [Space]
     [Header("Connectable Elements")]
     [SerializeField] private Rigidbody _rb = null;
+    [SerializeField] private SpriteRenderer _sr = null;
+    [SerializeField] private BoxCollider _col = null;
+    [SerializeField] private Vector3 colliderPos = Vector3.zero;
     [ReadOnly] public GameObject objectToFollow = null;
     [SerializeField] private Animator _anim = null;
 
@@ -23,6 +26,7 @@ public class FollowBehavior : EntityBehavior
     [SerializeField, Range(0f, 25f)] private float movementSpeed = 0f;
     [SerializeField, Range(0f, 1f)] private float movementFalloff = 1f;
     [SerializeField, ReadOnly] private Vector3 moveDir = Vector3.zero;
+    [SerializeField, ReadOnly] public Vector2 direction = Vector2.zero;
 
     [Header("Determinate Configurables")]
     [SerializeField, ReadOnly] public float followRange = 0f;
@@ -37,6 +41,10 @@ public class FollowBehavior : EntityBehavior
 
     public override EntityBehavior GetCurrentBehavior()
     {
+        direction = transform.position - objectToFollow.transform.position;
+
+        FlipSpriteAndHitbox();
+
         EntityBehavior resultBehavior = this;
 
         // Step 1. Perform the desired behavior
@@ -77,6 +85,23 @@ public class FollowBehavior : EntityBehavior
         // Step 3. return new behavior
 
         return resultBehavior;
+    }
+
+    private void FlipSpriteAndHitbox()
+    {
+        if (direction.x > 0)
+            _sr.flipX = false;
+        else if (direction.x < 0)
+            _sr.flipX = true;
+
+        if (direction.x < 0)
+            _col.center = colliderPos;
+        else if (direction.x > 0)
+            _col.center = new Vector3(
+                -colliderPos.x,
+                colliderPos.y,
+                colliderPos.z
+            );
     }
 
     #if UNITY_EDITOR

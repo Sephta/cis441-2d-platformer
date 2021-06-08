@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
         // If DASH KEY is pressed
         if (Input.GetKeyDown(InputManager._inst._keyBindings[InputAction.run])
             && !iGrounded.isGrounded && currDashCount > 0 && !isDashing 
-            && direction != Vector2.zero && !iCombo.isAttacking)
+            && direction != Vector2.zero && !iCombo.isAttacking && !PlayerInteractionHandler.isPlayerHurting)
         {
             isDashing = true;
 
@@ -132,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
             //                                _rb.velocity.z + (moveDir.z * _ps.AirStrafeSpeed * Time.fixedDeltaTime));
             // }
             
-            if (!isDashing)
+            if (!isDashing && !PlayerInteractionHandler.isPlayerHurting)
                 _rb.velocity = new Vector3(moveDir.x == 0 ? _rb.velocity.x : moveDir.x * terminalVelocity, 
                                            _rb.velocity.y,
                                            _rb.velocity.z);

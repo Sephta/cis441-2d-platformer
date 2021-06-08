@@ -76,6 +76,8 @@ public class PlayerAnimationController : MonoBehaviour
             (-movementEpsilon <= _pm._rb.velocity.x && _pm._rb.velocity.x <= movementEpsilon) ? false : true);
         
         _anim.SetBool("isDashing", _pm.isDashing);
+
+        _anim.SetBool("isPlayerHurting", PlayerInteractionHandler.isPlayerHurting);
     }
 
     private void TriggerJumpEvent()
@@ -117,4 +119,8 @@ public class PlayerAnimationController : MonoBehaviour
         
         // direction = direction.normalized;
     }
+
+    public void PlayerIsHurting() => PlayerInteractionHandler.isPlayerHurting = true;
+
+    public void PlayerIsNotHurting() => PlayerInteractionHandler.isPlayerHurting = false;
 }
