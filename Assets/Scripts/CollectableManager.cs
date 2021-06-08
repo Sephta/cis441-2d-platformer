@@ -53,13 +53,13 @@ public class CollectableManager : MonoBehaviour
         => numEnemiesKilled = 0;
     
     public void IncrementNumCollectablesFound()
-        => numCollectablesFound = (int) Mathf.Clamp((float)(numCollectablesFound + 1), 0f, (float) collectables.Count);
+        => numCollectablesFound += 1;
     
     public void ResetNumCollectablesFound()
         => numCollectablesFound = 0;
     
     public void IncrementNumSecretsFound()
-        => numSecretsFound = (int) Mathf.Clamp((float)(numSecretsFound + 1), 0f, (float) collectables.Count);
+        => numSecretsFound += 1;
     
     public void ResetNumSecretsFound()
         => numSecretsFound = 0;
