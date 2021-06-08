@@ -1,5 +1,7 @@
 # Experimental 2.5D Action Platformer
 
+Prize: Alumni Select ~ this project was specially selected by class Alumni as a standout project
+
 Source code for my final project in CIS 441 (Computer Graphics) @ University of Oregon
 
 This experimental platformer, as I will be refering to it, was the core concept I had for my final project. My goal was to build a simple platformer with tight movement mechanics and simple but fun combat.
