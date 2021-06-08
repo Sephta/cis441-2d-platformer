@@ -14,7 +14,7 @@ public class PlayerJump : MonoBehaviour
     [Expandable, SerializeField] private PlayerStatsSO _ps = null;
 
     // PRIVATE VARS
-    private InputManager iManager = null;
+    [SerializeField] private InputManager iManager = null;
     private StaticGroundedManager iGrounded = null;
     
     [Header("Debug Data")]

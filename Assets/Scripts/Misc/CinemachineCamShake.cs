@@ -45,4 +45,13 @@ public class CinemachineCamShake : MonoBehaviour
         mChannelPerlin.m_AmplitudeGain = shakeIntensity;
         currShakeTime = shakeTimer;
     }
+
+    public void ShakeCamera(float intensity, float duration)
+    {
+        CinemachineBasicMultiChannelPerlin mChannelPerlin = 
+            _cvc.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        
+        mChannelPerlin.m_AmplitudeGain = intensity;
+        currShakeTime = duration;
+    }
 }

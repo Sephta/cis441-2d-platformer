@@ -19,7 +19,15 @@ public class EntityStatusHandler : MonoBehaviour
     void Update()
     {
         if (currHealth == 0)
-            Destroy(this.transform.parent.gameObject);
+            OnEnemyDeath();
+    }
+
+    private void OnEnemyDeath()
+    {
+        if (CollectableManager._inst != null)
+            CollectableManager._inst.IncrementNumEnemiesKilled();
+
+        Destroy(this.transform.parent.gameObject);
     }
 
     public void SetHealth(int amount) =>

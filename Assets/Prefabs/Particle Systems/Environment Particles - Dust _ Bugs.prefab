@@ -1133,7 +1133,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   RotationModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -1293,7 +1293,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    separateAxes: 0
+    separateAxes: 1
   ColorModule:
     enabled: 1
     gradient:
@@ -1361,9 +1361,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
   UVModule:
     serializedVersion: 2
-    enabled: 0
-    mode: 0
-    timeMode: 0
+    enabled: 1
+    mode: 1
+    timeMode: 1
     fps: 30
     frameOverTime:
       serializedVersion: 2
@@ -1480,7 +1480,17 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 0}
+    - sprite: {fileID: -7326887196921383209, guid: 6c7feb2900e88b64d8e2b4b4b03a8290, type: 3}
+    - sprite: {fileID: -3668327193806358115, guid: 6c7feb2900e88b64d8e2b4b4b03a8290, type: 3}
+    - sprite: {fileID: -4303410715785025907, guid: 6c7feb2900e88b64d8e2b4b4b03a8290, type: 3}
+    - sprite: {fileID: 48750137390191039, guid: 6c7feb2900e88b64d8e2b4b4b03a8290, type: 3}
+    - sprite: {fileID: 5352545485067811874, guid: 6c7feb2900e88b64d8e2b4b4b03a8290, type: 3}
+    - sprite: {fileID: -1003595649628137878, guid: 6c7feb2900e88b64d8e2b4b4b03a8290, type: 3}
+    - sprite: {fileID: -1928386485646857623, guid: 6c7feb2900e88b64d8e2b4b4b03a8290, type: 3}
+    - sprite: {fileID: 190933348492039255, guid: 6c7feb2900e88b64d8e2b4b4b03a8290, type: 3}
+    - sprite: {fileID: 6933620331827778277, guid: 6c7feb2900e88b64d8e2b4b4b03a8290, type: 3}
+    - sprite: {fileID: 8637635853453518199, guid: 6c7feb2900e88b64d8e2b4b4b03a8290, type: 3}
+    - sprite: {fileID: 5720705750445283365, guid: 6c7feb2900e88b64d8e2b4b4b03a8290, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4758,7 +4768,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4777,7 +4787,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 90749629
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0

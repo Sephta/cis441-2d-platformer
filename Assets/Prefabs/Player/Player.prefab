@@ -60,6 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tagToDetect: Entity
   _playerAnimator: {fileID: 5514130609983246038}
+  cinemachineCamShake: {fileID: 0}
   OnPlayerHit:
     m_PersistentCalls:
       m_Calls:
@@ -228,8 +229,8 @@ MonoBehaviour:
   cinemachineCamShake: {fileID: 0}
   _ps: {fileID: 11400000, guid: 9308a4f90e2e3354098984b3665c1423, type: 2}
   lockZAxis: 1
-  gravityMultiplier: 2.21
-  gravityDefault: {x: 0, y: -9.81, z: 0}
+  gravityMultiplier: 2.125
+  gravityDefault: {x: 0, y: -19.62, z: 0}
   isDashing: 0
   moveDir: {x: 0, y: 0, z: 0}
   currDashCount: 0
@@ -348,8 +349,8 @@ SpriteRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8669471945094092273}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -495,7 +496,7 @@ CapsuleCollider:
   m_Radius: 0.25
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: -0.05, y: -0.15, z: 0}
+  m_Center: {x: -0.05, y: -0.2, z: 0}
 --- !u!114 &8748471296515370262
 MonoBehaviour:
   m_ObjectHideFlags: 0
