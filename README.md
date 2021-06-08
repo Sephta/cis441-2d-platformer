@@ -40,6 +40,8 @@ Most of my development time went into learning how best to combine 2D and 3D ele
 
 * Low Poly Ultimate Pack by user POLYPERFECT
 
+* (Will update this list once Im not in crunch mode and can actually get some sleep)
+
 ### Assets from Itch.io
 
 * Slime Animations by [Reff SQ](https://reff-sq.itch.io/ "Reff SQ profile page")
@@ -49,3 +51,14 @@ Most of my development time went into learning how best to combine 2D and 3D ele
 * Animated Pixel Adventurer by [rvros](https://rvros.itch.io/)
  
 * Pixel Art Froest by [edermunizz](https://edermunizz.itch.io/)
+
+
+## What I did not have time for
+
+There are some things I would have liked to get done but simply did not have time to do for various reasons. These include:
+
+* SFX / Music
+
+* Accessibility Settings in the options menu
+
+* Multiple Levels with fleshed out platforming elements (i.e. moving platforms, spikes, etc) 
