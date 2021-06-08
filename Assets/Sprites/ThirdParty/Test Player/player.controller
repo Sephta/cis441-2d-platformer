@@ -705,7 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90fe2878eb1d584c865ce3d25d9fd28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceType: 1
+  forceType: 2
   forceDirection: {x: 1, y: 0, z: 0}
   forceStrength: 2
   _rb: {fileID: 0}
@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90fe2878eb1d584c865ce3d25d9fd28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceType: 1
+  forceType: 2
   forceDirection: {x: 1, y: 0, z: 0}
   forceStrength: 4
   _rb: {fileID: 0}
@@ -1875,7 +1875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c90fe2878eb1d584c865ce3d25d9fd28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceType: 1
+  forceType: 2
   forceDirection: {x: 1, y: 0, z: 0}
   forceStrength: 2
   _rb: {fileID: 0}

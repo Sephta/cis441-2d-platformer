@@ -9,12 +9,22 @@ using NaughtyAttributes;
 public class AIInteractionHandler : MonoBehaviour
 {
     [SerializeField, Tag] private string tagToDetect;
+    [SerializeField] private float hitBackForce = 0f;
+    [SerializeField] private float hitUpForce = 0f;
+    [SerializeField, ReadOnly] EntityStatusHandler entityStatus = null;
 
     [Space(25)]
     public UnityEvent OnEntityHit;
     // [SerializeField] private AIBehaviorManager _aiManager = null;
 
     [ReadOnly] public Transform hitByTransform = null;
+
+
+    void Awake()
+    {
+        if (entityStatus == null)
+            entityStatus = GetComponent<EntityStatusHandler>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -41,7 +51,10 @@ public class AIInteractionHandler : MonoBehaviour
         Vector3 direction = (hitByTransform != null) ? 
             (this.transform.parent.position - hitByTransform.position) : Vector3.zero; // -_parentRB.velocity.normalized;
 
-        _parentRB.AddForce(direction * 35f, ForceMode.Impulse);
-        _parentRB.AddForce(Vector3.up * 20f, ForceMode.Impulse);
+        _parentRB.AddForce(direction * hitBackForce, ForceMode.VelocityChange);
+        _parentRB.AddForce(Vector3.up * hitUpForce, ForceMode.VelocityChange);
+
+        if (entityStatus != null)
+            entityStatus.UpdateHealth(10);
     }
 }
