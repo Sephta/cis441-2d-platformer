@@ -61,4 +61,12 @@ There are some things I would have liked to get done but simply did not have tim
 
 * Accessibility Settings in the options menu
 
-* Multiple Levels with fleshed out platforming elements (i.e. moving platforms, spikes, etc) 
+* Multiple Levels with fleshed out platforming elements (i.e. moving platforms, spikes, etc)
+
+## For the Professor
+
+Here is a list of things you should probably look at when considering my grade for this project...
+
+* Navigating to "Assets/Scripts/" you will find that about 99% of the code there is written by me. It's not organized in the most convienient way, but all of the obvious to look for items should be easily accessible. One thing that I meant to change was the AI state behaviors are located in "Assets/Scripts/ScriptableObjects/AI/Behaviors" these are no longer Scriptable Objects and were supposed to be moved to a more convienient folder location
+
+* The game is actually playable anywhere in a browser that supports and runs WebGL applications. The go to browser I recommend for testing purposes is Chrome obviously, and you will find a link on the right hand side of this repository or right [here](https://sephta.itch.io/cis-441-final-project)
